@@ -10,25 +10,27 @@
 
   <body>
 
-
     <% user_signed_in? && current_user.email == 'austin@sequoiacpe.com' ? @name = 'Austin' : '' %>
+    <% user_signed_in? && current_user.email == 'austin@admin.com' ? @name = 'Austin-Admin' : '' %>
     <% user_signed_in? && current_user.email == 'michael@sequoiacpe.com' ? @name = 'Michael' : '' %>
     <% user_signed_in? && current_user.email == 'kyle@sequoiacpe.com' ? @name = 'Kyle' : '' %>
     <% user_signed_in? && current_user.email == 'ashley@sequoiacpe.com' ? @name = 'Ashley' : '' %>
 
-
+<% if user_signed_in? %>
     <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">Sequoia CPE</a>
       </div>
       <ul class="nav navbar-nav">
+        <!-- <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+          <li><a href="/datasheets">DataSheet</a></li>
+        <% end %> -->
         <li><a href="/datasheets">DataSheet</a></li>
         <li><a href="/updatesheets">UpdateSheet</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <!-- <li><%= @name %></li> -->
           <li><%= link_to @name, edit_user_registration_path %></li>
           <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
         <% else %>
@@ -38,8 +40,19 @@
       </ul>
     </div>
   </nav>
+  <!-- not logged in - get a empty nav bar -->
+  <% elsif %>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Sequoia CPE</a>
+    </div>
+  </div>
+</nav>
+<% end %>
 
     <%= yield %>
+
   <script>
     $(document).ready(function(){
       $("#myInput").on("keyup", function() {
