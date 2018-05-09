@@ -1,0 +1,67 @@
+<%= form_with(model: exam, local: true) do |form| %>
+  <% if exam.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
+
+      <ul>
+      <% exam.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :exam_id %>
+    <%= form.number_field :exam_id, id: :exam_exam_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uid %>
+    <%= form.number_field :uid, id: :exam_uid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :des %>
+    <%= form.text_field :des, id: :exam_des %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date, id: :exam_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :complete_date %>
+    <%= form.date_select :complete_date, id: :exam_complete_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seq_number %>
+    <%= form.number_field :seq_number, id: :exam_seq_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seq_version %>
+    <%= form.text_field :seq_version, id: :exam_seq_version %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seq_title %>
+    <%= form.text_field :seq_title, id: :exam_seq_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :score %>
+    <%= form.text_field :score, id: :exam_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, id: :exam_rating %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

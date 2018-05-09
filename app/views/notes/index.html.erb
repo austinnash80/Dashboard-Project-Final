@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Notes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Note</th>
+      <th>Due</th>
+      <th>Due date</th>
+      <th>Done</th>
+      <th>Important</th>
+      <th>Type one</th>
+      <th>Type two</th>
+      <th>Type three</th>
+      <th>Extra boolean</th>
+      <th>Extra string</th>
+      <th>Extra integer</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notes.each do |note| %>
+      <tr>
+        <td><%= note.title %></td>
+        <td><%= note.note %></td>
+        <td><%= note.due %></td>
+        <td><%= note.due_date %></td>
+        <td><%= note.done %></td>
+        <td><%= note.important %></td>
+        <td><%= note.type_one %></td>
+        <td><%= note.type_two %></td>
+        <td><%= note.type_three %></td>
+        <td><%= note.extra_boolean %></td>
+        <td><%= note.extra_string %></td>
+        <td><%= note.extra_integer %></td>
+        <td><%= note.user_id %></td>
+        <td><%= link_to 'Show', note %></td>
+        <td><%= link_to 'Edit', edit_note_path(note) %></td>
+        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Note', new_note_path %>

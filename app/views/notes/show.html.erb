@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @note.title %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @note.note %>
+</p>
+
+<p>
+  <strong>Due:</strong>
+  <%= @note.due %>
+</p>
+
+<p>
+  <strong>Due date:</strong>
+  <%= @note.due_date %>
+</p>
+
+<p>
+  <strong>Done:</strong>
+  <%= @note.done %>
+</p>
+
+<p>
+  <strong>Important:</strong>
+  <%= @note.important %>
+</p>
+
+<p>
+  <strong>Type one:</strong>
+  <%= @note.type_one %>
+</p>
+
+<p>
+  <strong>Type two:</strong>
+  <%= @note.type_two %>
+</p>
+
+<p>
+  <strong>Type three:</strong>
+  <%= @note.type_three %>
+</p>
+
+<p>
+  <strong>Extra boolean:</strong>
+  <%= @note.extra_boolean %>
+</p>
+
+<p>
+  <strong>Extra string:</strong>
+  <%= @note.extra_string %>
+</p>
+
+<p>
+  <strong>Extra integer:</strong>
+  <%= @note.extra_integer %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @note.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>

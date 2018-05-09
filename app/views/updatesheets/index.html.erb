@@ -1,5 +1,35 @@
 <p id="notice"><%= notice %></p>
 
+<div id="button">
+  <p>What is a modal?</p>
+</div>
+
+<div id="modal-overlay">
+  <div id="modal">
+    <h1>Editing Updatesheet</h1>
+
+    <%= render 'form0', updatesheet: @updatesheet %>
+  </div>
+</div>
+
+
+<script>
+
+$("#button").click(function() {
+  $('#modal-overlay').fadeIn(200);
+
+});
+
+// $('#modal-overlay').click(function() {
+//    $('#modal-overlay').fadeOut(200);
+// });
+
+</script>
+
+
+
+
+
 <div class="jumbotron text-center">
 <h1>Course Updates</h1>
 </div>
@@ -44,6 +74,9 @@
       <!-- <th>Update course</th> -->
       <th>Hold</th> <!--This is used as = <th>Extra boolean</th> -->
       <!-- <th>Note approval</th> -->
+
+
+
       <th>Text</th>
       <th>Exam</th>
       <!-- <th>Course listed</th> -->
@@ -107,6 +140,16 @@
         <% end %>
         <td><%= updatesheet.role %></td>
         <td><%= updatesheet.rolep %></td>
+
+        <!-- <div id="button">
+          <td><button>update</button></td>
+        </div>
+
+        <div id="display-none">
+          <div id="modal">
+            <%= render 'form0', updatesheet: @updatesheet %>
+          </div>
+        </div> -->
         <td><%= updatesheet.irs_number %></td>
         <!-- <td><%= updatesheet.proofed %></td> -->
         <% if updatesheet.proofed == true %>

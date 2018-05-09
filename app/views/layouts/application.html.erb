@@ -3,7 +3,7 @@
   <head>
     <title>SequoiaCourses</title>
     <%= csrf_meta_tags %>
-
+    <script src="http://cdn.jsdelivr.net/npm/vue"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -20,7 +20,7 @@
     <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Sequoia CPE</a>
+        <a class="navbar-brand" href="/dashboard/home">Sequoia CPE</a>
       </div>
       <ul class="nav navbar-nav">
         <!-- <% if current_user.superadmin_role? || current_user.supervisor_role? %>
@@ -47,6 +47,9 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Sequoia CPE</a>
     </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to 'log in', new_user_session_path %></li>
+    </ul>
   </div>
 </nav>
 <% end %>

@@ -1,0 +1,82 @@
+<%= form_with(model: note, local: true) do |form| %>
+  <% if note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+      <% note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :note_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_area :note, id: :note_note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due %>
+    <%= form.check_box :due, id: :note_due %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due_date %>
+    <%= form.date_select :due_date, id: :note_due_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :done %>
+    <%= form.check_box :done, id: :note_done %>
+  </div>
+
+  <div class="field">
+    <%= form.label :important %>
+    <%= form.check_box :important, id: :note_important %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type_one %>
+    <%= form.check_box :type_one, id: :note_type_one %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type_two %>
+    <%= form.check_box :type_two, id: :note_type_two %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type_three %>
+    <%= form.check_box :type_three, id: :note_type_three %>
+  </div>
+
+  <div class="field">
+    <%= form.label :extra_boolean %>
+    <%= form.check_box :extra_boolean, id: :note_extra_boolean %>
+  </div>
+
+  <div class="field">
+    <%= form.label :extra_string %>
+    <%= form.text_field :extra_string, id: :note_extra_string %>
+  </div>
+
+  <div class="field">
+    <%= form.label :extra_integer %>
+    <%= form.number_field :extra_integer, id: :note_extra_integer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :note_user_id, value: current_user.id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

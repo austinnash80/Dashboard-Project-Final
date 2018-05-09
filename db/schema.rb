@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507051849) do
+ActiveRecord::Schema.define(version: 20180509121415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,39 @@ ActiveRecord::Schema.define(version: 20180507051849) do
     t.text "extra_note"
     t.boolean "extra_boolean"
     t.integer "extra_integer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "exams", force: :cascade do |t|
+    t.integer "exam_id"
+    t.integer "uid"
+    t.string "des"
+    t.date "start_date"
+    t.date "complete_date"
+    t.integer "seq_number"
+    t.string "seq_version"
+    t.string "seq_title"
+    t.float "score"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "title"
+    t.text "note"
+    t.boolean "due"
+    t.date "due_date"
+    t.boolean "done"
+    t.boolean "important"
+    t.boolean "type_one"
+    t.boolean "type_two"
+    t.boolean "type_three"
+    t.boolean "extra_boolean"
+    t.string "extra_string"
+    t.integer "extra_integer"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Exams</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Exam</th>
+      <th>Uid</th>
+      <th>Des</th>
+      <th>Start date</th>
+      <th>Complete date</th>
+      <th>Seq number</th>
+      <th>Seq version</th>
+      <th>Seq title</th>
+      <th>Score</th>
+      <th>Rating</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @exams.each do |exam| %>
+      <tr>
+        <td><%= exam.exam_id %></td>
+        <td><%= exam.uid %></td>
+        <td><%= exam.des %></td>
+        <td><%= exam.start_date %></td>
+        <td><%= exam.complete_date %></td>
+        <td><%= exam.seq_number %></td>
+        <td><%= exam.seq_version %></td>
+        <td><%= exam.seq_title %></td>
+        <td><%= exam.score %></td>
+        <td><%= exam.rating %></td>
+        <td><%= link_to 'Show', exam %></td>
+        <td><%= link_to 'Edit', edit_exam_path(exam) %></td>
+        <td><%= link_to 'Destroy', exam, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Exam', new_exam_path %>

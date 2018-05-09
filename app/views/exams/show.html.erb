@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Exam:</strong>
+  <%= @exam.exam_id %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @exam.uid %>
+</p>
+
+<p>
+  <strong>Des:</strong>
+  <%= @exam.des %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @exam.start_date %>
+</p>
+
+<p>
+  <strong>Complete date:</strong>
+  <%= @exam.complete_date %>
+</p>
+
+<p>
+  <strong>Seq number:</strong>
+  <%= @exam.seq_number %>
+</p>
+
+<p>
+  <strong>Seq version:</strong>
+  <%= @exam.seq_version %>
+</p>
+
+<p>
+  <strong>Seq title:</strong>
+  <%= @exam.seq_title %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @exam.score %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @exam.rating %>
+</p>
+
+<%= link_to 'Edit', edit_exam_path(@exam) %> |
+<%= link_to 'Back', exams_path %>

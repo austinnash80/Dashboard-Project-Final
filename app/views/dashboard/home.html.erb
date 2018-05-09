@@ -1,0 +1,155 @@
+<!-- <h1>Dashboard#home</h1>
+<p>Find me in app/views/dashboard/home.html.erb</p> -->
+
+
+ <script src="http://cdn.jsdelivr.net/npm/vue"></script>
+
+
+<h1 title="">Home Dashboard</h1>
+
+<!-- <div id="app">
+  {{ message }}
+</div>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello world"
+    }
+  });
+</script> -->
+
+</br>
+
+
+  <div class="container col-sm-3" id="app">
+    <h2> Quick Notes</h2>
+    <h4> Vue.js Local Storage </h4>
+    <input class="form-control" placeholder="Add A New Simple Task" v-model="newTodo" @keydown.enter="addTodo">
+</br>
+    <ul class="list-unstyled list-group" >
+      <li v-for="todo in todos" :class="{ completed: todo.completed }" class="list-group-item">
+        <input type="checkbox" v-model="todo.completed">
+        <input type="text" v-if="todo === editTodo" v-auto-focus class="text-input" @keyup.enter="endEdit(todo)" @blur="endEdit(todo)" v-model="todo.text">
+        <label  v-if="todo !== editTodo" @dblclick="edit(todo)">{{ todo.text }}</label>
+        <button class="btn" @click="remove(todo)">X</button>
+      </li>
+    </ul>
+
+
+
+
+
+    <h2>Big Notes</h2>
+    <h4>Database Storage</h4>
+  <%= link_to 'New Note', new_note_path, class: 'btn btn-default' %>
+  <!-- <table class=""> -->
+      <!-- <tbody> -->
+        <% @notes.each do |note| %>
+        <% note.user_id %>
+        <% if user_signed_in? && note.user_id == current_user.id%>
+          <tr>
+
+            <td class="list-unstyled list-group">
+              <li class="list-group-item">
+                <div>
+                  <% if note.done == false %>
+                    Status: Open
+                  <% elsif %>
+                    Status: Done
+                  <% end %>
+                  |
+                  <% if note.type_one == true %>
+                    Type: One
+                  <% elsif note.type_two == true %>
+                    Type: Two
+                  <% elsif note.type_three == true%>
+                    Type: Three
+                  <% end %>
+                  |
+                  <<%= link_to 'Edit', edit_note_path(note) %>
+
+                  <!-- <%= link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' } %> -->
+                </div>
+              </br>
+                <div>
+                  Title: <%= link_to note.title, note %>
+                </div>
+                <div>
+                  <% if note.due == true %>
+                    <%= note.due_date %>
+                  <% elsif %>
+                  <p></p>
+                  <% end%>
+
+              </li>
+
+            <!-- <td><%= note.user_id %></td> -->
+            <!-- <td><%= link_to 'Show', note %></td> -->
+            <!-- <td><%= link_to 'Edit', edit_note_path(note) %></td> -->
+
+
+          </td>
+          </tr>
+        <% elsif %>
+
+        <% end %>
+      <% end %>
+      <!-- </tbody> -->
+    <!-- </table> -->
+
+  </div> <!-- container div -->
+
+
+
+<script>
+
+var todo = new Vue({
+  el: '#app',
+  data: {
+    newTodo: '',
+    todos: [],
+    editTodo: {}
+  },
+  methods: {
+    addTodo() {
+      this.todos.push({ text: this.newTodo, completed: false });
+      this.newTodo = '';
+    },
+    remove(todo) {
+      console.log('removed');
+      let index = this.todos.indexOf(todo)
+      this.todos.splice(index, 1)
+      localStorage.setItem('todos', JSON.stringify(this.todos));
+    },
+    edit(todo) {
+      console.log('edit');
+      this.editTodo = todo;
+    },
+
+    endEdit(todo) {
+      console.log('editEnd');
+      this.editTodo = {};
+      if (todo.text.trim() === ""){
+        this.remove(todo);
+      }
+    },
+
+  },
+  mounted() {
+    console.log('mounted');
+    if (localStorage.getItem('todos')) this.todos = JSON.parse(localStorage.getItem('todos'));
+  },
+  watch: {
+    todos: {
+      handler() {
+        console.log('changed');
+        localStorage.setItem('todos', JSON.stringify(this.todos));
+      },
+      deep: true,
+    },
+  },
+});
+
+</script>
