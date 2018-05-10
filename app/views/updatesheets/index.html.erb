@@ -1,37 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<div id="button">
-  <p>What is a modal?</p>
-</div>
-
-<div id="modal-overlay">
-  <div id="modal">
-    <h1>Editing Updatesheet</h1>
-
-    <%= render 'form0', updatesheet: @updatesheet %>
-  </div>
-</div>
-
-
-<script>
-
-$("#button").click(function() {
-  $('#modal-overlay').fadeIn(200);
-
-});
-
-// $('#modal-overlay').click(function() {
-//    $('#modal-overlay').fadeOut(200);
-// });
-
-</script>
-
-
-
-
-
-<div class="jumbotron text-center">
-<h1>Course Updates</h1>
+<div class="well text-center">
+  <h1>Course Updates</h1>
 </div>
 
 <!-- could push all into an array and check if they are all the sam -->

@@ -5,7 +5,17 @@
  <script src="http://cdn.jsdelivr.net/npm/vue"></script>
 
 
-<h1 title="">Home Dashboard</h1>
+
+
+
+
+
+
+<% user_signed_in? && current_user.email == 'austin@sequoiacpe.com' ? @name = 'Austin' : '' %>
+ <div class="well well-lg">
+   <h1 class="text-center title"><%= @name %> Dashboard </h1>
+ </div>
+
 
 <!-- <div id="app">
   {{ message }}
@@ -23,84 +33,128 @@
 </br>
 
 
-  <div class="container col-sm-3" id="app">
-    <h2> Quick Notes</h2>
-    <h4> Vue.js Local Storage </h4>
+  <div class="col-sm-3" id="app">
+    <div class="well">
+    <h2 class="text-center"> Quick Notes</h2>
+    <h4 class="text-center"> Vue.js Local Storage </h4>
     <input class="form-control" placeholder="Add A New Simple Task" v-model="newTodo" @keydown.enter="addTodo">
 </br>
-    <ul class="list-unstyled list-group" >
+    <div class="list-unstyled list-group" >
       <li v-for="todo in todos" :class="{ completed: todo.completed }" class="list-group-item">
         <input type="checkbox" v-model="todo.completed">
         <input type="text" v-if="todo === editTodo" v-auto-focus class="text-input" @keyup.enter="endEdit(todo)" @blur="endEdit(todo)" v-model="todo.text">
         <label  v-if="todo !== editTodo" @dblclick="edit(todo)">{{ todo.text }}</label>
         <button class="btn" @click="remove(todo)">X</button>
       </li>
-    </ul>
+    </div>
+  </div>
 
 
 
 
-
-    <h2>Big Notes</h2>
-    <h4>Database Storage</h4>
-  <%= link_to 'New Note', new_note_path, class: 'btn btn-default' %>
+<div class="well">
+    <h2 class="text-center">Big Notes</h2>
+    <h4 class="text-center">Database Storage</h4>
+    <div>
+      <%= link_to 'New Note', new_note_path, class: 'btn btn-default' %>
+    </div>
+  </br>
   <!-- <table class=""> -->
       <!-- <tbody> -->
-        <% @notes.each do |note| %>
-        <% note.user_id %>
-        <% if user_signed_in? && note.user_id == current_user.id%>
-          <tr>
+    <% @notes.each do |note| %>
+        <!-- Trigger the modal with a button -->
+    <!-- <span class="list-group"> -->
 
-            <td class="list-unstyled list-group">
-              <li class="list-group-item">
-                <div>
+        <li class="list-group-item"><button type="button" class="btn" data-toggle="modal" data-target="#myModal"><%= note.title %></button></li>
+
+    <!-- </span> -->
+        <!-- Modal -->
+
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+
+                  <%= note.title %> | <%= link_to 'Edit', edit_note_path(note) %>
+
+                </h4>
+              </div>
+              <div class="modal-body">
+                <!-- <% note.user_id %> -->
+                <% if user_signed_in? && note.user_id == current_user.id%>
+                  <tr>
+                      <%= note.note %>
+                    <!-- <td><%= note.user_id %></td> -->
+                    <!-- <td><%= link_to 'Show', note %></td> -->
+                    <!-- <td><%= link_to 'Edit', edit_note_path(note) %></td> -->
+                  </tr>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+
                   <% if note.done == false %>
                     Status: Open
                   <% elsif %>
                     Status: Done
                   <% end %>
-                  |
+
                   <% if note.type_one == true %>
-                    Type: One
+                    | Type: One
                   <% elsif note.type_two == true %>
-                    Type: Two
+                    | Type: Two
                   <% elsif note.type_three == true%>
-                    Type: Three
+                    | Type: Three
                   <% end %>
-                  |
-                  <<%= link_to 'Edit', edit_note_path(note) %>
 
                   <!-- <%= link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' } %> -->
-                </div>
-              </br>
-                <div>
-                  Title: <%= link_to note.title, note %>
-                </div>
-                <div>
+
                   <% if note.due == true %>
-                    <%= note.due_date %>
+                    | <%= note.due_date %>
                   <% elsif %>
                   <p></p>
                   <% end%>
 
-              </li>
-
-            <!-- <td><%= note.user_id %></td> -->
-            <!-- <td><%= link_to 'Show', note %></td> -->
-            <!-- <td><%= link_to 'Edit', edit_note_path(note) %></td> -->
 
 
-          </td>
-          </tr>
-        <% elsif %>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                  Close
 
-        <% end %>
-      <% end %>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+<% end %>
       <!-- </tbody> -->
     <!-- </table> -->
+  </div>
+</div>
 
-  </div> <!-- container div -->
+<div class="col-sm-6">
+  <div class="well">
+  <h2 class="text-center">Upcoming Schedule</h2>
+</div>
+</div>
 
+<div class="col-sm-3">
+  <div class="well">
+    <h2 class="text-center">Sales</h2>
+  </div>
+
+  <div class="well">
+    <h2 class="text-center">Courses</h2>
+  </div>
+</div>
 
 
 <script>

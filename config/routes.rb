@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :exams
+  resources :exams do
+    collection {post :import}
+  end
   resources :notes
   get 'dashboard/home'
 

@@ -61,6 +61,12 @@ class ExamsController < ApplicationController
     end
   end
 
+  def import #Uploading CSV function
+    Exam.import(params[:file])
+    redirect_to exams_path, notice: "Upload Complete"
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_exam
@@ -69,6 +75,6 @@ class ExamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exam_params
-      params.require(:exam).permit(:exam_id, :uid, :des, :start_date, :complete_date, :seq_number, :seq_version, :seq_title, :score, :rating)
+      params.require(:exam).permit(:eid, :uid, :des, :start_date, :complete_date, :seq_number, :seq_v, :seq_t, :score, :rating)
     end
 end

@@ -1,4 +1,5 @@
 class Datasheet < ApplicationRecord
+  self.primary_key = "seq_number"
   has_many :updatesheets
   has_many :exams
 

@@ -6,6 +6,7 @@
     <script src="http://cdn.jsdelivr.net/npm/vue"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Open+Sans" rel="stylesheet">
   </head>
 
   <body>
@@ -28,13 +29,14 @@
         <% end %> -->
         <li><a href="/datasheets">DataSheet</a></li>
         <li><a href="/updatesheets">UpdateSheet</a></li>
+        <li><a href="/exams">Exams</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li><%= link_to @name, edit_user_registration_path %></li>
           <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <li><%= link_to 'sign up', new_user_registration_path %></li>
+          <!-- <li><%= link_to 'sign up', new_user_registration_path %></li> -->
           <li><%= link_to 'log in', new_user_session_path %></li>
         <% end %>
       </ul>
@@ -49,6 +51,7 @@
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li><%= link_to 'log in', new_user_session_path %></li>
+      <li><%= link_to 'sign up', new_user_registration_path %></li>
     </ul>
   </div>
 </nav>

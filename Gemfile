@@ -65,6 +65,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'smarter_csv'
+# gem 'smarter_csv' # Not using did csv Upload manually
 
 gem 'rails_12factor', group: :production
