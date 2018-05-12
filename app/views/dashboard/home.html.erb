@@ -13,7 +13,7 @@
 
 <% user_signed_in? && current_user.email == 'austin@sequoiacpe.com' ? @name = 'Austin' : '' %>
  <div class="well well-lg">
-   <h1 class="text-center title"><%= @name %> Dashboard </h1>
+   <h1 class="text-center"><%= @name %> Dashboard </h1>
  </div>
 
 
@@ -36,7 +36,7 @@
   <div class="col-sm-3" id="app">
     <div class="well">
     <h2 class="text-center"> Quick Notes</h2>
-    <h4 class="text-center"> Vue.js Local Storage </h4>
+    <h4 class="text-center body-text"> Vue.js Local Storage </h4>
     <input class="form-control" placeholder="Add A New Simple Task" v-model="newTodo" @keydown.enter="addTodo">
 </br>
     <div class="list-unstyled list-group" >
@@ -54,7 +54,7 @@
 
 <div class="well">
     <h2 class="text-center">Big Notes</h2>
-    <h4 class="text-center">Database Storage</h4>
+    <h4 class="text-center body-text">Database Storage</h4>
     <div>
       <%= link_to 'New Note', new_note_path, class: 'btn btn-default' %>
     </div>

@@ -5,7 +5,22 @@
 </div>
 
 
-<% @arr_exam = [] %>
+
+<% @cpa = Exam.select('seq_title') %>
+
+<%= @cpa %>
+
+<% @day = Exam.group(:seq_number, :des).order(:des, :seq_number).count %>
+
+<!-- <%= @day %> -->
+
+<% @day.each do |e| %>
+  <div> Course: <%= e.join(" , ") %></div>
+<%end%>
+
+
+
+<!-- <% @arr_exam = [] %>
 
 <% @exams.each do |exam| %>
   <% @arr_exam.push(exam.seq_number)%>
@@ -15,9 +30,9 @@
 
 <% @arr.each do |title| %>
   <div>Exam: <%= title.join(" | ") %></div>
-<%end%>
+<%end%> -->
 
-<div> Total Exams Taken: <%= @arr_exam.length %>
+<!-- <div> Total Exams Taken: <%= @arr_exam.length %> -->
 
 
 <table class="table table-hover">
@@ -38,7 +53,7 @@
   </thead>
 
   <tbody>
-    <% @exams.each do |exam| %>
+    <% @exams.limit(5).each do |exam| %>
       <tr>
         <td><%= exam.eid %></td>
         <td><%= exam.uid %></td>

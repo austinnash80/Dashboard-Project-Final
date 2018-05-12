@@ -2,8 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Open+Sans');
-
 .completed { text-decoration: line-through; }
 
 .align {
@@ -14,7 +12,16 @@ display: flex;
   text-align: center;
 }
 
-.title {
-  font-family: 'Open Sans', sans-serif;
-  color: green;
+.title-text {
+  font-family: 'Varela Round', sans-serif;
+}
+
+.body-text {
+  font-family: 'Lora', serif;
+  color: #606060
+}
+
+h1, h2 {
+  font-family: 'Varela Round', sans-serif;
+  text-align: center;
 }
