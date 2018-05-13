@@ -69,6 +69,6 @@ class MailItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mail_item_params
-      params.require(:mail_item).permit(:mail_id, :title, :quantity, :data_name, :art_name, :msi_note, :note_1, :note_2, :complete, :boolean_1, :integer_1, :image)
+      params.require(:mail_item).permit(:mail_id, :title, :quantity, :data_name, :art_name, :msi_note, :note_1, :note_2, :complete, :boolean_1, :integer_1, :image, :data)
     end
 end

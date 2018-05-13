@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
+
+<p class="display-none"><strong>Mailing Notes: </strong><%= @mail_item.note_1 %></p>
+
 <a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.image %>">Art Download</a>
+<a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.data %>">Data Download</a>
 <%= link_to 'Schedule Download', mail_item_path(@mail_item, :format => 'pdf'), class: 'btn btn-default display-none', target: '_blank'%>
+
 
 <h1>Sequoia CPE Mailing</h1>
   <h2><%= Date.today.strftime('%m/%d/%y') %></h2>
