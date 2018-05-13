@@ -1,0 +1,77 @@
+<%= form_with(model: mail_item, local: true) do |form| %>
+  <% if mail_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mail_item.errors.count, "error") %> prohibited this mail_item from being saved:</h2>
+
+      <ul>
+      <% mail_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :mail_id %>
+    <%= form.number_field :mail_id, id: :mail_item_mail_id, value: params[:mail_id] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :mail_item_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, id: :mail_item_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data_name %>
+    <%= form.text_field :data_name, id: :mail_item_data_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :art_name %>
+    <%= form.text_field :art_name, id: :mail_item_art_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :msi_note %>
+    <%= form.text_area :msi_note, id: :mail_item_msi_note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note_1 %>
+    <%= form.text_area :note_1, id: :mail_item_note_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note_2 %>
+    <%= form.text_area :note_2, id: :mail_item_note_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :complete %>
+    <%= form.check_box :complete, id: :mail_item_complete %>
+  </div>
+
+  <div class="field">
+    <%= form.label :boolean_1 %>
+    <%= form.check_box :boolean_1, id: :mail_item_boolean_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :integer_1 %>
+    <%= form.number_field :integer_1, id: :mail_item_integer_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image, id: :mail_item_image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

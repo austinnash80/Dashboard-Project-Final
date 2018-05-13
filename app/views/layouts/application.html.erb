@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <script src="http://cdn.jsdelivr.net/npm/vue"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- <%= stylesheet_link_tag "application", media: "print" %> -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Lora|Varela+Round" rel="stylesheet">
   </head>
@@ -30,6 +31,8 @@
         <li><%= link_to 'Datasheet', datasheets_path %></li>
         <li><%= link_to 'UpdateSheet', updatesheets_path %></li>
         <li><%= link_to 'Exams', exams_path %></li>
+        <li><%= link_to 'Mail Schedule', mail_schedules_path %></li>
+        <li><%= link_to 'Mailing Contents', mail_items_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>

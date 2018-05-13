@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="well">Mail Schedule</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Mail</th>
+      <th>Drop date</th>
+      <th>Group 30</th>
+      <th>Group 60</th>
+      <th>Group 90</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mail_schedules.each do |mail_schedule| %>
+      <tr>
+        <td><%= mail_schedule.mail_id %></td>
+        <td><%= mail_schedule.drop_date %></td>
+        <td><%= mail_schedule.group_30 %></td>
+        <td><%= mail_schedule.group_60 %></td>
+        <td><%= mail_schedule.group_90 %></td>
+        <td><%= link_to 'Start Mailing', new_mail_item_path(:mail_id => mail_schedule.mail_id) %></td>
+        <td><%= link_to 'Show', mail_schedule %></td>
+        <td><%= link_to 'Edit', edit_mail_schedule_path(mail_schedule) %></td>
+        <td><%= link_to 'Destroy', mail_schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mail Schedule', new_mail_schedule_path %>

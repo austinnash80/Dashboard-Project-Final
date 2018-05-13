@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'PDF Download', mail_item_path(@mail_item, :format => 'pdf'), class: 'btn btn-default display-none' %>
+
+<h1>Sequoia CPE Mailing</h1>
+  <h2><%= Date.today.strftime('%m/%d/%y') %></h2>
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+<!-- <th><strong >Mail:</strong></th> -->
+<th><strong>Title:</strong></th>
+<th><strong>Drop Date:</strong></th>
+<th><strong>Quantity:</strong></th>
+<th><strong>Data File:</strong></th>
+<th><strong>Art File:</strong></th>
+</thead>
+
+
+</tbody>
+<!-- <td><%= @mail_item.mail_id %></td> -->
+<td><%= @mail_item.title %></td>
+<td><%= @mail_item.mailSchedule.drop_date.strftime('%m/%d/%y') %></td>
+<td><%= number_with_delimiter(@mail_item.quantity) %></td>
+<td><%= @mail_item.mail_id.to_f / 10 %>.xlsx</td>
+<td><%= @mail_item.mail_id.to_f / 10 %>.pdf</td>
+</tr>
+</tbody>
+</table>
+<%= image_tag @mail_item.image.url(:medium) %>
+<p>
+   <!-- <strong>Msi note:</strong> -->
+  <%= @mail_item.msi_note.html_safe %>
+</p>
+
+<!--<p>
+  <strong>Note 2:</strong>
+  <%= @mail_item.note_2 %>
+</p>
+
+<p>
+  <strong>Complete:</strong>
+  <%= @mail_item.complete %>
+</p>
+
+<p>
+  <strong>Boolean 1:</strong>
+  <%= @mail_item.boolean_1 %>
+</p>
+
+<p>
+  <strong>Integer 1:</strong>
+  <%= @mail_item.integer_1 %>
+</p> -->
+
+<%= link_to 'Edit | ', edit_mail_item_path(@mail_item), class: 'display-none' %>
+<%= link_to 'Back', mail_items_path, class: 'display-none' %>

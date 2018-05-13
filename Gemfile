@@ -68,3 +68,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'smarter_csv' # Not using did csv Upload manually
 
 gem 'rails_12factor', group: :production
+
+gem "paperclip", "~> 6.0.0" #upload images
+
+gem 'pdfkit' # generate pdfs
+
+gem 'wkhtmltopdf-binary' #need for pdfkit gem

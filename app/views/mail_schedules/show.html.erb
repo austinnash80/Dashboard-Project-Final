@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mail:</strong>
+  <%= @mail_schedule.mail_id %>
+</p>
+
+<p>
+  <strong>Drop date:</strong>
+  <%= @mail_schedule.drop_date %>
+</p>
+
+<p>
+  <strong>Group 30:</strong>
+  <%= @mail_schedule.group_30 %>
+</p>
+
+<p>
+  <strong>Group 60:</strong>
+  <%= @mail_schedule.group_60 %>
+</p>
+
+<p>
+  <strong>Group 90:</strong>
+  <%= @mail_schedule.group_90 %>
+</p>
+
+<%= link_to 'Edit', edit_mail_schedule_path(@mail_schedule) %> |
+<%= link_to 'Back', mail_schedules_path %>

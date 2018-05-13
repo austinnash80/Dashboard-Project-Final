@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="well">Mailings</h1>
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Mail</th>
+      <th>Title</th>
+      <th>Quantity</th>
+      <th>Data File</th>
+      <th>Art File</th>
+      <!-- <th>Msi note</th>
+      <th>Note 1</th>
+      <th>Note 2</th>
+      <th>Complete</th>
+      <th>Boolean 1</th>
+      <th>Integer 1</th> -->
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mail_items.each do |mail_item| %>
+      <tr>
+        <td><%= mail_item.mail_id %></td>
+        <td><%= mail_item.title %></td>
+        <td><%= mail_item.quantity %></td>
+        <!-- <td><%= mail_item.data_name %></td> -->
+        <!-- <td><%= number_with_delimiter((mail_item.mail_id / 10).to_f, :delimiter => '.') %>.pdf</td> -->
+        <td><%= mail_item.mail_id.to_f / 10 %>.xlsx</td>
+        <td><%= mail_item.mail_id.to_f / 10 %>.pdf</td>
+        <!-- <td><%= mail_item.art_name %></td> -->
+        <!-- <td><%= mail_item.msi_note %></td>
+        <td><%= mail_item.note_1 %></td>
+        <td><%= mail_item.note_2 %></td>
+        <td><%= mail_item.complete %></td>
+        <td><%= mail_item.boolean_1 %></td>
+        <td><%= mail_item.integer_1 %></td> -->
+        <td><%= link_to 'Show', mail_item %></td>
+
+        <td><%= link_to 'Edit', edit_mail_item_path(mail_item) %></td>
+        <td><%= link_to 'Destroy', mail_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+<%= link_to 'New Mail Item', new_mail_item_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180509133642) do
+ActiveRecord::Schema.define(version: 20180512091760) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,36 @@ ActiveRecord::Schema.define(version: 20180509133642) do
     t.string "seq_t"
     t.float "score"
     t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mail_items", force: :cascade do |t|
+    t.integer "mail_id"
+    t.string "title"
+    t.integer "quantity"
+    t.string "data_name"
+    t.string "art_name"
+    t.text "msi_note"
+    t.text "note_1"
+    t.text "note_2"
+    t.boolean "complete"
+    t.boolean "boolean_1"
+    t.integer "integer_1"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "mail_schedules", force: :cascade do |t|
+    t.integer "mail_id"
+    t.date "drop_date"
+    t.integer "group_30"
+    t.integer "group_60"
+    t.integer "group_90"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

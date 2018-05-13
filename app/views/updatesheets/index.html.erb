@@ -75,7 +75,7 @@
         <% elsif %>
             <td class="red_text">In Progess</td>
         <% end %>
-        <td><%= updatesheet.seq_number %></td>
+        <td><%= updatesheet.datasheet.seq_number %></td>
         <td><%= updatesheet.seq_version %></td>
         <td><%= updatesheet.datasheet.seq_title.truncate_words(4) %></td>
         <td><%= updatesheet.pes_number %></td>
@@ -117,7 +117,7 @@
 
         <div id="display-none">
           <div id="modal">
-            <%= render 'form0', updatesheet: @updatesheet %>
+            <%#= render 'form0', updatesheet: @updatesheet %>
           </div>
         </div> -->
         <td><%= updatesheet.irs_number %></td>

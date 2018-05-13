@@ -1,0 +1,42 @@
+<%= form_with(model: mail_schedule, local: true) do |form| %>
+  <% if mail_schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mail_schedule.errors.count, "error") %> prohibited this mail_schedule from being saved:</h2>
+
+      <ul>
+      <% mail_schedule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :mail_id %>
+    <%= form.number_field :mail_id, id: :mail_schedule_mail_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :drop_date %>
+    <%= form.date_select :drop_date, id: :mail_schedule_drop_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :group_30 %>
+    <%= form.number_field :group_30, id: :mail_schedule_group_30 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :group_60 %>
+    <%= form.number_field :group_60, id: :mail_schedule_group_60 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :group_90 %>
+    <%= form.number_field :group_90, id: :mail_schedule_group_90 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

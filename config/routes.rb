@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :mailing_schedules
+  resources :mail_items
+  resources :mail_schedules
   resources :exams do
     collection {post :import}
   end

@@ -27,5 +27,6 @@ module SequoiaCourses
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.middleware.use PDFKit::Middleware, :print_media_type => true
   end
 end
