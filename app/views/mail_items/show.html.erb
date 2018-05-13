@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'PDF Download', mail_item_path(@mail_item, :format => 'pdf'), class: 'btn btn-default display-none' %>
+<a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.image %>">Art Download</a>
+<%= link_to 'Schedule Download', mail_item_path(@mail_item, :format => 'pdf'), class: 'btn btn-default display-none', target: '_blank'%>
 
 <h1>Sequoia CPE Mailing</h1>
   <h2><%= Date.today.strftime('%m/%d/%y') %></h2>
@@ -28,7 +28,7 @@
 </tr>
 </tbody>
 </table>
-<%= image_tag @mail_item.image.url(:medium) %>
+
 <p>
    <!-- <strong>Msi note:</strong> -->
   <%= @mail_item.msi_note.html_safe %>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :photos do
+    get "serve", :on => :member
+  end
   resources :mail_items
   resources :mail_schedules
   resources :exams do
