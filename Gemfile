@@ -74,3 +74,9 @@ gem "paperclip", "~> 6.0.0" #upload images
 gem 'pdfkit' # generate pdfs
 
 gem 'wkhtmltopdf-binary' #need for pdfkit gem
+
+gem "font-awesome-rails"
+
+gem "chartkick"
+
+gem "groupdate"

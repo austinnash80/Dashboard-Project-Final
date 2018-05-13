@@ -18,7 +18,9 @@
   <div> Course: <%= e.join(" , ") %></div>
 <%end%>
 
+<%#= bar_chart Shirt.group(:size).sum(:price) %>
 
+<%= bar_chart Exam.group(:seq_number).count %>
 
 <!-- <% @arr_exam = [] %>
 

@@ -108,15 +108,6 @@ ActiveRecord::Schema.define(version: 20180513032847) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.string "name", null: false
-    t.binary "data", null: false
-    t.string "file_name"
-    t.string "mime_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "updatesheets", force: :cascade do |t|
     t.integer "pes_number"
     t.string "pes_version"

@@ -6,7 +6,9 @@
   <thead>
     <tr>
       <th>Mail</th>
-      <th>Drop date</th>
+      <th>MSI Date</th>
+      <th>Drop Date</th>
+      <th>Land Date</th>
       <th>Group 30</th>
       <th>Group 60</th>
       <th>Group 90</th>
@@ -18,11 +20,13 @@
     <% @mail_schedules.each do |mail_schedule| %>
       <tr>
         <td><%= mail_schedule.mail_id %></td>
-        <td><%= mail_schedule.drop_date %></td>
+        <td><%= (mail_schedule.drop_date - 10).strftime('%m/%d/%y') %></td>
+        <td><%= mail_schedule.drop_date.strftime('%m/%d/%y') %></td>
+        <td><%= (mail_schedule.drop_date + 10).strftime('%m/%d/%y') %></td>
         <td><%= mail_schedule.group_30 %></td>
         <td><%= mail_schedule.group_60 %></td>
         <td><%= mail_schedule.group_90 %></td>
-        <td><%= link_to 'Start Mailing', new_mail_item_path(:mail_id => mail_schedule.mail_id) %></td>
+        <td><%= link_to 'Mail Contents', new_mail_item_path(:mail_id => mail_schedule.mail_id) %></td>
         <td><%= link_to 'Show', mail_schedule %></td>
         <td><%= link_to 'Edit', edit_mail_schedule_path(mail_schedule) %></td>
         <td><%= link_to 'Destroy', mail_schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>

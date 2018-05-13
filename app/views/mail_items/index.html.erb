@@ -24,7 +24,7 @@
   <tbody>
     <% @mail_items.each do |mail_item| %>
       <tr>
-        <td><%= mail_item.mail_id %></td>
+        <td><%= mail_item.mailSchedule.mail_id %></td>
         <td><%= mail_item.title %></td>
         <td><%= mail_item.quantity %></td>
         <!-- <td><%= mail_item.data_name %></td> -->

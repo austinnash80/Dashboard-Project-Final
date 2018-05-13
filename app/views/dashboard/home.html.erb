@@ -97,9 +97,9 @@
               <div class="modal-footer">
 
                   <% if note.done == false %>
-                    Status: Open
+                    Status: <i class="fa fa-check-circle fa-2x table-icons-green"></i>
                   <% elsif %>
-                    Status: Done
+                    Status: <i class="fa fa-check-circle fa-2x table-icons-green"></i>
                   <% end %>
 
                   <% if note.type_one == true %>
@@ -140,19 +140,85 @@
   </div>
 </div>
 
-<div class="col-sm-6">
+ <div class="col-sm-6">
   <div class="well">
   <h2 class="text-center">Upcoming Schedule</h2>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <!-- <th>Mail</th> -->
+        <th><h4 class="body-text">Title</h4></th>
+        <th><h4 class="body-text">MSI Date</h4></th>
+        <th><h4 class="body-text">Drop Date</h4></th>
+        <th><h4 class="body-text">Art</h4></th>
+        <!-- <th>Quantity</th>
+        <th>Data File</th>
+        <th>Art File</th> -->
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @mail_items.each do |mail_item| %>
+        <tr>
+          <!-- <td><%= mail_item.mailSchedule.mail_id %></td> -->
+          <td><%= mail_item.title %></td>
+          <td><%= (mail_item.mailSchedule.drop_date - 10).strftime('%m/%d/%y') %></td>
+          <td><%= mail_item.mailSchedule.drop_date.strftime('%m/%d/%y') %></td>
+          <% if mail_item.complete == true %>
+            <td><i class="fa fa-check-circle fa-2x table-icons-green"></i></td>
+          <% elsif %>
+            <td><i class="fa fa-times-circle fa-2x table-icons-red"></i></td>
+          <% end %>
+
+          <!-- <td><%= mail_item.quantity %></td>
+
+          <td><%= mail_item.mail_id.to_f / 10 %>.xlsx</td>
+          <td><%= mail_item.mail_id.to_f / 10 %>.pdf</td> -->
+
+          <td><%= link_to 'Materials', mail_item, class: 'btn btn-default' %></td>
+
+          <!-- <td><%= link_to 'Edit', edit_mail_item_path(mail_item) %></td>
+          <td><%= link_to 'Destroy', mail_item, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+
+
 </div>
 </div>
 
 <div class="col-sm-3">
   <div class="well">
     <h2 class="text-center">Sales</h2>
+
+    <form id="search">
+      <input type="search" id="symbols" value="" placeholder="AUD, USD">
+      <button id="results1">Go</button>
+    </form>
+
+    <div id="results1">
+
+    </div>
   </div>
 
   <div class="well">
     <h2 class="text-center">Courses</h2>
+
+    <!-- <% @day = Exam.group(:des, :seq_number).order(:des, :seq_number).count %>
+
+    <% @day.each do | k , v | %>
+      <div><%#= e.join(":  ") %></div>
+      <div><%= k.join( " - ") %> taken <%= v %> times</div>
+
+    <%end%> -->
+    <h4 class="body-text text-center">Date Params: </h4>
+    <%= bar_chart Exam.group(:seq_number).count %>
+
   </div>
 </div>
 
