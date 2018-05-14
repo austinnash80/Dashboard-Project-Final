@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
       @mail_schedules = MailSchedule.all
       @mail_items = MailItem.all
       @exams = Exam.all
+      @updatesheets = Updatesheet.all
   end
 
 end

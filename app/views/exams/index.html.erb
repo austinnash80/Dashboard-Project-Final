@@ -5,6 +5,17 @@
 </div>
 
 
+<% @arr_cpa = [] %>
+
+<%# ordersheet.pur_date == (@today - 1) ? @today_sales_1.push(ordersheet.order_total) : '' %>
+
+<% @exams.each do |exam| %>
+  <% if exam.des == 'CPA' %>
+    <% @arr_cpa.push(exam.seq_number)%>
+  <% end %>
+<% end %>
+
+CPA Array <%= @arr_cpa %>
 
 <% @cpa = Exam.select('seq_title') %>
 
@@ -53,9 +64,9 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
+<!-- .limit(10) -->
   <tbody>
-    <% @exams.limit(5).each do |exam| %>
+    <% @exams.each do |exam| %>
       <tr>
         <td><%= exam.eid %></td>
         <td><%= exam.uid %></td>

@@ -2,6 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+button { //remove default styleing
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.logo {
+  max-height: 75px;
+  max-width: 300px;
+}
 .completed { text-decoration: line-through; }
 
 .align {
@@ -18,7 +32,7 @@ display: flex;
 
 .body-text {
   font-family: 'Lora', serif;
-  color: #606060
+  color: #505050
 }
 
 h1, h2 {
@@ -31,4 +45,102 @@ h1, h2 {
 }
 .table-icons-red {
   color: red;
+}
+
+.floating-box {
+    display: inline-block;
+  }
+
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+.yellow {
+  color: #e7af5f;
+}
+
+.body-home {
+  background-color: #21495b;
+}
+
+.name-text {
+  color: #f1f1f1;
+}
+
+.header-size{
+  font-size: 1.5em;
+}
+
+.align-right {
+  align-content: right;
+}
+
+.btn-small{
+  font-size: .6em;
+}
+
+.btn-bigger1{
+  font-size: 1.15em;
+}
+
+
+//-- drop down style - clean up
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.btn-wrap-text {
+	    white-space: normal !important;
+	    word-wrap: break-word !important;
+	}
+
+.text-align-right {
+  text-align: left;
 }

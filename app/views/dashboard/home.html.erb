@@ -7,31 +7,46 @@
 
 
 
-
-
-
+<body class="body-home">
 
 <% user_signed_in? && current_user.email == 'austin@sequoiacpe.com' ? @name = 'Austin' : '' %>
- <div class="well well-lg">
-   <h1 class="text-center"><%= @name %> Dashboard </h1>
- </div>
+<h2> <%#= image_tag "/assets/logo2.png", class: 'logo'%> <span class="name-text text-center"><%= @name %>'s Dashboard</span>
 
+<div class="dropdown header-size floating-box pull-left">
+    <button class="btn-small name-text" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-option-vertical"></span></button>
+    <ul class="dropdown-menu multi-level">
+      <li class="dropdown-submenu">
+        <a tabindex="-1" href="#">Courses</a>
+        <ul class="dropdown-menu">
+            <li>
+              <a tabindex="-1"href="/datasheets">Datasheet</a>
+              <a tabindex="-1"href="/updatesheets">Updatesheet</a>
+              <a tabindex="-1"href="/exams">Exams</a>
+            </li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a tabindex="-1" href="#">Marketing</a>
+        <ul class="dropdown-menu">
+            <li>
+              <a tabindex="-1"href="/mail_schedules">Mail Schedule</a>
+              <a tabindex="-1"href="/mail_items">Mail contents</a>
+            </li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <% if user_signed_in? %>
+        <li><a href="/users/sign_out">Log out</a></li>
+      <% elsif %>
+        <li><a href="/users/sign_up">Sign up</a></li>
+        <li><a href="/users/sign_in">Log in</a></li>
 
-<!-- <div id="app">
-  {{ message }}
-</div>
+      <% end %>
+    </ul>
+  </div>
 
-<script>
-  var app = new Vue({
-    el: '#app',
-    data: {
-      message: "Hello world"
-    }
-  });
-</script> -->
-
-</br>
-
+</h2>
+<br />
 
   <div class="col-sm-3" id="app">
     <div class="well">
@@ -40,24 +55,20 @@
     <input class="form-control" placeholder="Add A New Simple Task" v-model="newTodo" @keydown.enter="addTodo">
 </br>
     <div class="list-unstyled list-group" >
-      <li v-for="todo in todos" :class="{ completed: todo.completed }" class="list-group-item">
+      <span v-for="todo in todos" :class="{ completed: todo.completed }" class="list-group-item">
         <input type="checkbox" v-model="todo.completed">
-        <input type="text" v-if="todo === editTodo" v-auto-focus class="text-input" @keyup.enter="endEdit(todo)" @blur="endEdit(todo)" v-model="todo.text">
-        <label  v-if="todo !== editTodo" @dblclick="edit(todo)">{{ todo.text }}</label>
-        <button class="btn" @click="remove(todo)">X</button>
-      </li>
+        <button class="btn glyphicon glyphicon-remove" @click="remove(todo)"></button>
+        <input type="text" v-if="todo === editTodo" v-auto-focus class="" @keyup.enter="endEdit(todo)" @blur="endEdit(todo)" v-model="todo.text">
+        <label  class="" v-if="todo !== editTodo" @dblclick="edit(todo)">{{ todo.text }}</label>
+      </span>
     </div>
   </div>
 
 
-
-
 <div class="well">
-    <h2 class="text-center">Big Notes</h2>
+    <h2 class="text-center">Future Tasks</h2>
+    <div class="text-center"><%= link_to 'New Task', new_note_path, class: 'btn btn-primary' %></div>
     <h4 class="text-center body-text">Database Storage</h4>
-    <div>
-      <%= link_to 'New Note', new_note_path, class: 'btn btn-default' %>
-    </div>
   </br>
   <!-- <table class=""> -->
       <!-- <tbody> -->
@@ -65,7 +76,7 @@
         <!-- Trigger the modal with a button -->
     <!-- <span class="list-group"> -->
 
-        <li class="list-group-item"><button type="button" class="btn" data-toggle="modal" data-target="#myModal"><%= note.title %></button></li>
+        <li class="list-group-item"><button type="button" class="btn btn-wrap-text text-align-right" data-toggle="modal" data-target="#myModal"><%= note.title %></button></li>
 
     <!-- </span> -->
         <!-- Modal -->
@@ -149,7 +160,7 @@
       <tr>
         <!-- <th>Mail</th> -->
         <th><h4 class="body-text">Title</h4></th>
-        <th><h4 class="body-text">MSI Date</h4></th>
+        <th><h4 class="body-text">Deliver Date</h4></th>
         <th><h4 class="body-text">Drop Date</h4></th>
         <th><h4 class="body-text">Art</h4></th>
         <!-- <th>Quantity</th>
@@ -190,24 +201,58 @@
 
 
 </div>
+
+<div class="well">
+  <h2 class="text-center">Sales</h2>
+  <h4 class="body-text text-center"> <%= (Date.today - 8).strftime('%b, %d') %> - <%= (Date.today - 1).strftime('%b, %d') %> </h4>
+  <!-- <span class="col-sm-6 "> -->
+  <div class="floating-box"><%= column_chart (Exam.group(:seq_number).count).take(7) %> </div>
+  <div class="floating-box"><%= pie_chart (Exam.group(:seq_number).count).take(3) %></div>
+  <!-- </span> -->
+  <!-- <span class="col-sm-6 "> -->
+    <!-- <%= pie_chart (Exam.group(:seq_number).count).take(3) %> -->
+  <!-- </span> -->
+
+
+  <!-- <form id="search">
+    <input type="search" id="symbols" value="" placeholder="">
+    <button id="results1">Go</button>
+  </form> -->
+    <!-- <p id="results1"></p> -->
+</div>
 </div>
 
 <div class="col-sm-3">
   <div class="well">
-    <h2 class="text-center">Sales</h2>
+    <h2 class="text-center">Course Updates</h2>
 
-    <form id="search">
-      <input type="search" id="symbols" value="" placeholder="AUD, USD">
-      <button id="results1">Go</button>
-    </form>
+    <% @status_check = [] %>
+    <% @updatesheets.each do |updatesheet| %>
+      <% if updatesheet.course_listed == true && updatesheet.text_complete == true && updatesheet.exam_complete == true && updatesheet.proofed == true %>
+        <% @status_check.push(0) %>
+      <% elsif %>
+        <% @status_check.push(1) %>
+      <% end %>
+    <% end %>
 
-    <div id="results1">
+    <!-- Status is pushed into an array done =1 not_done =2 ex: [1,2,1] => work needs to be done-->
+    <!-- <%# if @status_check.itself.uniq.length == 1 %> -->
 
-    </div>
-  </div>
+    <% if (@status_check.inject(0, :+)) == 0 %>
+    <!-- <h3 class="green_text"> Courses are up to date </h3> -->
+    <h4 class="text-center body-text"> No courses inprogress <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign green btn btn-default' %></h4>
+    <%elsif (@status_check.inject(0, :+)) == 1 %>
+    <h4 class="text-center body-text"> <i class=""></i> <%=(@status_check.inject(0, :+))%> course inprogess <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign yellow btn btn-default' %></h4>
+    <%elsif %>
+    <h4 class="text-center body-text"> <%=(@status_check.inject(0, :+))%> courses inprogess <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign yellow btn btn-default' %></h4>
+    <%end%>
+    <h4 class="text-center"><%= link_to 'Add Update', datasheets_path, class: 'btn btn-primary' %><h4>
+
+
+</div>
 
   <div class="well">
-    <h2 class="text-center">Courses</h2>
+    <h2 class="text-center">Exams</h2>
 
     <!-- <% @day = Exam.group(:des, :seq_number).order(:des, :seq_number).count %>
 
@@ -216,11 +261,48 @@
       <div><%= k.join( " - ") %> taken <%= v %> times</div>
 
     <%end%> -->
-    <h4 class="body-text text-center">Date Params: </h4>
-    <%= bar_chart Exam.group(:seq_number).count %>
+
+
+
+    <%# ordersheet.pur_date == (@today - 1) ? @today_sales_1.push(ordersheet.order_total) : '' %>
+
+
+
+    <h4 class="body-text text-center">Taken over the past year </h4>
+
+
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#cpa">CPA</a></li>
+      <li><a data-toggle="tab" href="#ea">EA</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="cpa" class="tab-pane fade in active">
+        <!-- <h5>Exams taken over the last year</h5> -->
+        <%= bar_chart Exam.where(:complete_date => 1.year.ago..Time.now, des: 'CPA').group(:seq_number).count %>
+      </div>
+      <div id="ea" class="tab-pane fade">
+        <!-- <h5>Exams taken over the last year</h5> -->
+        <%= bar_chart Exam.where(:complete_date => 1.year.ago..Time.now, des: 'EA').group(:seq_number).count %>
+      </div>
+    </div>
+
+
+
+    <%#= bar_chart Exam.where(des: 'CPA').group(:seq_number).count %>
+    <%#= bar_chart Exam.where(des: 'EA').group(:seq_number).count %>
+    <%#= bar_chart Exam.where(:complete_date => 1.months.ago..Time.now).group(:seq_number).count %>
+    <%#= bar_chart Exam.where(:complete_date => 1.year.ago..Time.now).group(:seq_number).count %>
+
+<!-- 'start BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day -->
+    <!-- <%= bar_chart Exam.where(des: 'CPA').group(:seq_number).count %>
+    <%= bar_chart Exam.where(des: 'EA').group(:seq_number).count %> -->
 
   </div>
 </div>
+
+
+</body>
 
 
 <script>
