@@ -84,6 +84,9 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -95,6 +98,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
+    json (1.8.6)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -125,6 +129,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
     nested_form (0.3.2)
     nio4r (2.3.1)
     nokogiri (1.8.2)
@@ -255,6 +260,7 @@ DEPENDENCIES
   devise
   font-awesome-rails
   groupdate
+  httparty (~> 0.13.7)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

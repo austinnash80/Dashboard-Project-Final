@@ -80,3 +80,5 @@ gem "font-awesome-rails"
 gem "chartkick"
 
 gem "groupdate"
+
+gem 'httparty', '~> 0.13.7'
