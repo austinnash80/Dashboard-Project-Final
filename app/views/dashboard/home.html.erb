@@ -12,7 +12,7 @@
 <% user_signed_in? && current_user.email == 'austin@sequoiacpe.com' ? @name = 'Austin' : '' %>
 <h2> <%#= image_tag "/assets/logo2.png", class: 'logo'%> <span class="name-text text-center"><%= @name %>'s Dashboard</span>
 
-<div class="dropdown header-size floating-box pull-left">
+<!-- <div class="dropdown header-size floating-box pull-left">
     <button class="btn-small name-text" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-option-vertical"></span></button>
     <ul class="dropdown-menu multi-level">
       <li class="dropdown-submenu">
@@ -43,7 +43,37 @@
 
       <% end %>
     </ul>
-  </div>
+  </div> -->
+
+
+  <!-- New Right Side -->
+
+  <div class="dropdown header-size pull-right">
+      <button class="btn-small name-text" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-option-vertical"></span></button>
+      <ul class="dropdown-menu">
+        <li class="dropdown-header">Courses</li>
+        <!-- <li class="divider"></li> -->
+            <li><a href="/datasheets">Datasheet</a></li>
+            <li><a href="/updatesheets">Updatesheet</a></li>
+            <li>  <a href="/exams">Exams</a></li>
+        <li class="divider"></li>
+        <li class="dropdown-header">Marketing</li>
+            <li><a tabindex="-1"href="/mail_schedules">Mail Schedule</a></li>
+            <li><a tabindex="-1"href="/mail_items">Mail contents</a></li>
+        <% if user_signed_in? && current_user.superadmin_role?%>
+        <li class="divider"></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/users/sign_out">Log out</a></li>
+        <% elsif user_signed_in? %>
+        <li class="divider"></li>
+            <li><a href="/users/sign_out">Log out</a></li>
+        <% elsif %>
+        <li class="divider"></li>
+            <li><a href="/users/sign_up">Sign up</a></li>
+            <li><a href="/users/sign_in">Log in</a></li>
+        <% end %>
+          </ul>
+    </div>
 
 </h2>
 <br />
@@ -205,9 +235,11 @@
 <div class="well">
   <h2 class="text-center">Sales</h2>
   <h4 class="body-text text-center"> <%= (Date.today - 8).strftime('%b, %d') %> - <%= (Date.today - 1).strftime('%b, %d') %> </h4>
-  <!-- <span class="col-sm-6 "> -->
-  <div class="floating-box"><%= column_chart (Exam.group(:seq_number).count).take(7) %> </div>
+  <div class="floating-box">
+    <%= column_chart (Exam.group(:seq_number).count).take(7) %>
+  </div>
   <div class="floating-box"><%= pie_chart (Exam.group(:seq_number).count).take(3) %></div>
+</span>
   <!-- </span> -->
   <!-- <span class="col-sm-6 "> -->
     <!-- <%= pie_chart (Exam.group(:seq_number).count).take(3) %> -->
