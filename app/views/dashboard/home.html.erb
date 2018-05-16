@@ -248,12 +248,12 @@
 <% @ea = [] %>
 
      <% @output.each do |i| %>
-       <% i['license'] == 'CPA' ? @cpa.push(i["license"]) : '' %>
-       <% i['license'] == 'EA' ? @ea.push(i["license"]) : '' %>
+       <% i['license'] == 'CPA' ? @cpa.push(i["order_total"]) : '' %>
+       <% i['license'] == 'EA' ? @ea.push(i["order_total"]) : '' %>
      <% end %>
 
-     CPAs: <%= @cpa.length %>
-     EAs: <%= @ea.length %>
+    <p> CPAs: <%= @cpa.length %>, Order Total = <%= number_to_currency(@cpa.inject(0, :+)) %>, Average order <%= number_to_currency((@cpa.inject(0, :+))/(@cpa.length)) %></p>
+    <p> EAs: <%= @ea.length %>, Order Total = <%= number_to_currency(@ea.inject(0, :+)) %>, Average order <%= number_to_currency((@ea.inject(0, :+))/(@ea.length)) %> </p>
 
 
      <%# ordersheet.pur_date == (@today - 1) ? @today_sales_1.push(ordersheet.order_total) : '' %>
@@ -328,6 +328,21 @@
 
 </div>
 
+
+<div class="well">
+  <h2 class="text-center">Recent Orders</h2>
+
+<% @name = [] %>
+  <% @output.first(10).each do |orders| %>
+    <p><%= (orders["f_name"])%> <%= (orders["l_name"])%> | <span class="green_text" ><%= (orders["product_1"]) %></span> - <%=(orders['license']) %> </p>
+    <%# @name.push(orders["f_name"])%>
+    <%# orders['license'] == 'EA' ? @ea.push(orders["order_total"]) : '' %>
+  <% end %>
+
+  <%= @name[1..5] %>
+
+</div>
+
   <div class="well">
     <h2 class="text-center">Exams</h2>
 
@@ -349,16 +364,16 @@
 
 
     <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#cpa">CPA</a></li>
-      <li><a data-toggle="tab" href="#ea">EA</a></li>
+      <li class="active"><a data-toggle="tab" href="#cpa-exam">CPA</a></li>
+      <li><a data-toggle="tab" href="#ea-exam">EA</a></li>
     </ul>
 
     <div class="tab-content">
-      <div id="cpa" class="tab-pane fade in active">
+      <div id="cpa-exam" class="tab-pane fade in active">
         <!-- <h5>Exams taken over the last year</h5> -->
         <%= bar_chart Exam.where(:complete_date => 1.year.ago..Time.now, des: 'CPA').group(:seq_number).count %>
       </div>
-      <div id="ea" class="tab-pane fade">
+      <div id="ea-exam" class="tab-pane fade">
         <!-- <h5>Exams taken over the last year</h5> -->
         <%= bar_chart Exam.where(:complete_date => 1.year.ago..Time.now, des: 'EA').group(:seq_number).count %>
       </div>
