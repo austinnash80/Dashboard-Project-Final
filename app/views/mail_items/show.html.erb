@@ -3,8 +3,8 @@
 <p class="display-none"><strong>Mailing Notes: </strong><%= @mail_item.note_1 %></p>
 
 <!-- Local Host  -->
-<a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.image %>">Art Download</a>
-<!-- <a class="btn btn-default display-none" target="_blank" href="https://dashboard-project-final.herokuapp.com/<%= @mail_item.image %>">Art Download</a> -->
+<!-- <a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.image %>">Art Download</a> -->
+<a class="btn btn-default display-none" target="_blank" href="https://s3.us-east-2.amazonaws.com/<%= @mail_item.image %>">Art Download</a>
 <a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.data %>">Data Download</a>
 <%= link_to 'Schedule Download', mail_item_path(@mail_item, :format => 'pdf'), class: 'btn btn-default display-none', target: '_blank'%>
 
