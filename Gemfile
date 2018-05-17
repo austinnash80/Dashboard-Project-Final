@@ -69,7 +69,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails_12factor', group: :production
 
+gem "figaro"
+
 gem "paperclip", "~> 6.0.0" #upload images
+
+gem 'aws-sdk', '< 2.0'
 
 gem 'pdfkit' # generate pdfs
 

@@ -2,8 +2,9 @@
 
 <p class="display-none"><strong>Mailing Notes: </strong><%= @mail_item.note_1 %></p>
 
-<!-- Local Host <a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.image %>">Art Download</a> -->
-<a class="btn btn-default display-none" target="_blank" href="https://dashboard-project-final.herokuapp.com/<%= @mail_item.image %>">Art Download</a>
+<!-- Local Host  -->
+<a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.image %>">Art Download</a>
+<!-- <a class="btn btn-default display-none" target="_blank" href="https://dashboard-project-final.herokuapp.com/<%= @mail_item.image %>">Art Download</a> -->
 <a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.data %>">Data Download</a>
 <%= link_to 'Schedule Download', mail_item_path(@mail_item, :format => 'pdf'), class: 'btn btn-default display-none', target: '_blank'%>
 
@@ -11,7 +12,10 @@
 <h1>Sequoia CPE Mailing</h1>
   <h2><%= Date.today.strftime('%m/%d/%y') %></h2>
 
-<%#= image_tag @mail_item.image.url(:medium) %>
+<%= image_tag @mail_item.image.url(:medium) %>
+<%= @mail_item.image.url %>
+
+
 
 <table class="table table-hover">
   <thead>
