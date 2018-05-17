@@ -73,7 +73,7 @@ gem "figaro"
 
 gem "paperclip", "~> 6.0.0" #upload images
 
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk-s3'
 
 gem 'pdfkit' # generate pdfs
 
