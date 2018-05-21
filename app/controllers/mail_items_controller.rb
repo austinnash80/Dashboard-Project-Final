@@ -1,6 +1,7 @@
 class MailItemsController < ApplicationController
   before_action :set_mail_item, only: [:show, :edit, :update, :destroy]
 
+
   # GET /mail_items
   # GET /mail_items.json
   def index

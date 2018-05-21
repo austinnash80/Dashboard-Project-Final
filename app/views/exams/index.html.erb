@@ -19,7 +19,7 @@ CPA Array <%= @arr_cpa %>
 
 <% @cpa = Exam.select('seq_title') %>
 
-<%= @cpa %>
+CPA Exam.select = <%= @cpa %>
 
 <% @day = Exam.group(:seq_number, :des).order(:des, :seq_number).count %>
 
@@ -31,7 +31,7 @@ CPA Array <%= @arr_cpa %>
 
 <%#= bar_chart Shirt.group(:size).sum(:price) %>
 
-<%= bar_chart Exam.group(:seq_number).count %>
+<!-- <%= bar_chart Exam.group(:seq_number).count %> -->
 
 <!-- <% @arr_exam = [] %>
 
