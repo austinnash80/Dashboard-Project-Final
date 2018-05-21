@@ -1,58 +1,15 @@
-<!-- <h1>Dashboard#home</h1>
-<p>Find me in app/views/dashboard/home.html.erb</p> -->
-
-
- <!-- <script src="http://cdn.jsdelivr.net/npm/vue"></script> -->
-
-
-
+<!-- <h1>Dashboard#home</h1> -->
 
 <body class="body-home">
 
 <% user_signed_in? && current_user.email == 'austin@sequoiacpe.com' ? @name = 'Austin' : '' %>
 <h2> <%#= image_tag "/assets/logo2.png", class: 'logo'%> <span class="name-text text-center"><%= @name %>'s Dashboard</span>
 
-<!-- <div class="dropdown header-size floating-box pull-left">
-    <button class="btn-small name-text" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-option-vertical"></span></button>
-    <ul class="dropdown-menu multi-level">
-      <li class="dropdown-submenu">
-        <a tabindex="-1" href="#">Courses</a>
-        <ul class="dropdown-menu">
-            <li>
-              <a tabindex="-1"href="/datasheets">Datasheet</a>
-              <a tabindex="-1"href="/updatesheets">Updatesheet</a>
-              <a tabindex="-1"href="/exams">Exams</a>
-            </li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a tabindex="-1" href="#">Marketing</a>
-        <ul class="dropdown-menu">
-            <li>
-              <a tabindex="-1"href="/mail_schedules">Mail Schedule</a>
-              <a tabindex="-1"href="/mail_items">Mail contents</a>
-            </li>
-        </ul>
-      </li>
-      <li class="divider"></li>
-      <% if user_signed_in? %>
-        <li><a href="/users/sign_out">Log out</a></li>
-      <% elsif %>
-        <li><a href="/users/sign_up">Sign up</a></li>
-        <li><a href="/users/sign_in">Log in</a></li>
-
-      <% end %>
-    </ul>
-  </div> -->
-
-
-  <!-- New Right Side -->
-
+  <!-- New Right Side menu-->
   <div class="dropdown header-size pull-right">
       <button class="btn-small name-text" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-option-vertical"></span></button>
       <ul class="dropdown-menu">
         <li class="dropdown-header">Courses</li>
-        <!-- <li class="divider"></li> -->
             <li><a href="/datasheets">Datasheet</a></li>
             <li><a href="/updatesheets">Updatesheet</a></li>
             <li>  <a href="/exams">Exams</a></li>
@@ -74,10 +31,12 @@
         <% end %>
           </ul>
     </div>
+  <!-- End Menu -->
 
 </h2>
-<br />
 
+<br />
+<!-- Quick Notes section - Vue.js-->
   <div class="col-sm-3" id="app">
     <div class="well">
     <h2 class="text-center"> Quick Notes</h2>
@@ -94,23 +53,18 @@
     </div>
   </div>
 
-
+<!-- Future Task Section - rails model-->
 <div class="well">
     <h2 class="text-center">Future Tasks</h2>
     <div class="text-center"><%= link_to 'New Task', new_note_path, class: 'btn btn-primary' %></div>
     <h4 class="text-center body-text">Database Storage</h4>
   </br>
-  <!-- <table class=""> -->
-      <!-- <tbody> -->
+
     <% @notes.each do |note| %>
         <!-- Trigger the modal with a button -->
-    <!-- <span class="list-group"> -->
-
         <li class="list-group-item"><button type="button" class="btn btn-wrap-text text-align-right" data-toggle="modal" data-target="#myModal"><%= note.title %></button></li>
 
-    <!-- </span> -->
         <!-- Modal -->
-
         <div class="modal fade" id="myModal" role="dialog">
           <div class="modal-dialog">
 
@@ -125,13 +79,9 @@
                 </h4>
               </div>
               <div class="modal-body">
-                <!-- <% note.user_id %> -->
                 <% if user_signed_in? && note.user_id == current_user.id%>
                   <tr>
                       <%= note.note %>
-                    <!-- <td><%= note.user_id %></td> -->
-                    <!-- <td><%= link_to 'Show', note %></td> -->
-                    <!-- <td><%= link_to 'Edit', edit_note_path(note) %></td> -->
                   </tr>
                 <% end %>
               </div>
@@ -143,12 +93,9 @@
                     Status: <i class="fa fa-check-circle fa-2x table-icons-green"></i>
                   <% end %>
 
-                  <% if note.type_one == true %>
-                    | Type: One
-                  <% elsif note.type_two == true %>
-                    | Type: Two
-                  <% elsif note.type_three == true%>
-                    | Type: Three
+                  <% if note.type_one == true %> | Type: One
+                  <% elsif note.type_two == true %> | Type: Two
+                  <% elsif note.type_three == true%> | Type: Three
                   <% end %>
 
                   <!-- <%= link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' } %> -->
@@ -170,17 +117,12 @@
 
           </div>
         </div>
+  <% end %>
 
-
-
-
-
-<% end %>
-      <!-- </tbody> -->
-    <!-- </table> -->
   </div>
 </div>
 
+<!-- Mail scheule section -->
  <div class="col-sm-6">
   <div class="well">
   <h2 class="text-center">Upcoming Schedule</h2>
@@ -232,11 +174,8 @@
 
 </div>
 
+<!-- Left Sales Section -->
   <div class="col-sm-6 length right-square well">
-    <!-- <h2 class="text-center">Sales Data</h2> -->
-    <!-- <h4 class="body-text text-center"> <%= (Date.today - 8).strftime('%b, %d') %> - <%= (Date.today - 1).strftime('%b, %d') %> </h4> -->
-    <!-- <h4 class="body-text text-center"> <%= (Date.today).strftime('%a %b, %d %Y') %> </h4> -->
-
      <% @object = @output.join('') %>
      <%#= @object[0..25] %>
      <%#= @object %>
@@ -244,19 +183,19 @@
      <%#= @outputHTML.html_safe %>
 
 <!-- Today - 1 -->
-<% @CPA_day_sales_1 = [] %>
-<% @EA_day_sales_1 = [] %>
-<% @day_sales_1 = [] %>
+  <!-- <% @CPA_day_sales_1 = [] %>
+  <% @EA_day_sales_1 = [] %> -->
+  <% @day_sales_1 = [] %>
 
 <!-- Today - 2 -->
-<% @CPA_day_sales_2 = [] %>
-<% @EA_day_sales_2 = [] %>
-<% @day_sales_2 = [] %>
+  <!-- <% @CPA_day_sales_2 = [] %>
+  <% @EA_day_sales_2 = [] %>
+  <% @day_sales_2 = [] %> -->
 
 <!-- Today - 3 -->
-<% @CPA_day_sales_3 = [] %>
-<% @EA_day_sales_3 = [] %>
-<% @day_sales_3 = [] %>
+  <!-- <% @CPA_day_sales_3 = [] %>
+  <% @EA_day_sales_3 = [] %>
+  <% @day_sales_3 = [] %> -->
 
      <% @output.each do |i| %>
      <!-- Today - 1 -->
