@@ -4,23 +4,13 @@
 
 <!-- Local Host  -->
 <!-- <a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.image %>">Art Download</a> -->
-<!-- no access -->
-<!-- <a class="btn btn-default display-none" target="_blank" href="https://s3.us-east-2.amazonaws.com/mailing-pdf/mail_items/images/000/000/002/original/<%= @mail_item.art_name %>">Art Download</a> -->
+
 <a class="btn btn-default display-none" target="_blank" href="<%= @mail_item.image %>">Art Download</a>
 <a class="btn btn-default display-none" target="_blank" href="<%= @mail_item.data %>">Data Download</a>
 <%= link_to 'Schedule Download', mail_item_path(@mail_item, :format => 'pdf'), class: 'btn btn-default display-none', target: '_blank'%>
 
-<!-- Have the bottom - need the top url
-https://s3.us-east-2.amazonaws.com/mailing-pdf/mail_items/images/000/000/002/original/2018.5_-_CPA.pdf
-http://s3.amazonaws.com/mailing-pdf/mail_items/images/000/000/002/original/2018.5_-_CPA.pdf?1526527916 -->
-
 <h1>Sequoia CPE Mailing</h1>
   <h2><%= Date.today.strftime('%m/%d/%y') %></h2>
-
-<%= image_tag @mail_item.image.url(:medium) %>
-<%= @mail_item.image.url %>
-
-
 
 <table class="table table-hover">
   <thead>
@@ -45,7 +35,7 @@ http://s3.amazonaws.com/mailing-pdf/mail_items/images/000/000/002/original/2018.
 </tbody>
 </table>
 
-<p>
+<p class="print-only-display">
    <!-- <strong>Msi note:</strong> -->
   <%= @mail_item.msi_note.html_safe %>
 </p>
