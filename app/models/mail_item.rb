@@ -7,7 +7,7 @@ class MailItem < ApplicationRecord
 
     has_attached_file :image,
                       :path => "/:basename.:extension"
-                      :AWS_REGION => 'us-east-2'
+                      # :AWS_REGION => 'us-east-2'
     validates_attachment :image, :content_type => {:content_type => %w(image/jpeg image/jpg image/png application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)}
 
     has_attached_file :data
