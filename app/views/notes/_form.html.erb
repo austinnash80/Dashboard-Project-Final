@@ -76,6 +76,11 @@
     <%= form.number_field :user_id, id: :note_user_id, value: current_user.id %>
   </div>
 
+  <div class="field">
+    <%= form.label :doc %>
+    <%= form.file_field :doc, id: :note_doc %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

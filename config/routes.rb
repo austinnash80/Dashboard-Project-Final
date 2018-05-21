@@ -3,12 +3,6 @@ Rails.application.routes.draw do
     get "serve", :on => :member
   end
   resources :mail_items
-
-  #for s3 download of pdf,excel - https://stackoverflow.com/questions/12939903/allowing-user-to-download-file-from-s3-storage
-  # resources :mail_items do
-  # member { get :download }
-  # end
-
   resources :mail_schedules
   resources :exams do
     collection {post :import}

@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.logo-text {
+  text-align: left;
+  font-family: 'Alfa Slab One', 'sans-serif';
+  font-weight: 700;
+  color: #f9f9f9;
+}
+
+
 button { //remove default styleing
   background: none;
   color: inherit;

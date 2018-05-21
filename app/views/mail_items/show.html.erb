@@ -4,7 +4,7 @@
 
 <!-- Local Host  -->
 <!-- <a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.image %>">Art Download</a> -->
-<div class="btn-group-vertical display-none">
+<div class="btn-group display-none">
     <a class="btn btn-primary" target="_blank" href="<%= @mail_item.image %>">Art Download</a>
     <a class="btn btn-primary" target="_blank" href="<%= @mail_item.data %>">Data Download</a>
     <%= link_to 'Schedule Download', mail_item_path(@mail_item, :format => 'pdf'), class: 'btn btn-primary', target: '_blank'%>
@@ -22,6 +22,8 @@
 <th><strong>Quantity:</strong></th>
 <th><strong>Data File:</strong></th>
 <th><strong>Art File:</strong></th>
+<th><strong>image:</strong></th>
+<th><strong>Data:</strong></th>
 </thead>
 
 
@@ -30,8 +32,19 @@
 <td><%= @mail_item.title %></td>
 <td><%= @mail_item.mailSchedule.drop_date.strftime('%m/%d/%y') %></td>
 <td><%= number_with_delimiter(@mail_item.quantity) %></td>
-<td><%= @mail_item.mail_id.to_f / 10 %>.xlsx</td>
-<td><%= @mail_item.mail_id.to_f / 10 %>.pdf</td>
+<td><%= @mail_item.data_name %></td>
+<td><%= @mail_item.art_name %></td>
+
+<% if File.exist?(@mail_item.image.path) %>
+  <td>The image exists.</td>
+<% else %>
+  <td>The image is not here.</td>
+<% end %>
+
+<!-- <td><%= @mail_item.image %></td> -->
+<td><%= @mail_item.data %></td>
+<!-- <td><%= @mail_item.mail_id.to_f / 10 %>.xlsx</td> -->
+<!-- <td><%= @mail_item.mail_id.to_f / 10 %>.pdf</td> -->
 </tr>
 </tbody>
 </table>
