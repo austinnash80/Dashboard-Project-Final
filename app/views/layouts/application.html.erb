@@ -5,8 +5,7 @@
     <%= csrf_meta_tags %>
     <script src="http://cdn.jsdelivr.net/npm/vue"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <!-- <%= stylesheet_link_tag "application", media: "print" %> -->
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> Moved to the end of body for the vue gem-->
     <link href="https://fonts.googleapis.com/css?family=Lora|Varela+Round" rel="stylesheet">
   </head>
 
@@ -101,5 +100,8 @@ const sales_data = function (event) {
 }
 
   </script>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </body>
 </html>

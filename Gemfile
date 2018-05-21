@@ -69,7 +69,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails_12factor', group: :production
 
-gem "figaro"
+gem "figaro" #for aws - may not have been needed
 
 gem "paperclip", "~> 6.0.0" #upload images
 
@@ -83,6 +83,8 @@ gem "font-awesome-rails"
 
 gem "chartkick"
 
-gem "groupdate"
+gem "groupdate" #makes dates easier for chartkick
 
 gem 'httparty', '~> 0.13.7'
+
+gem 'vuejs-rails'
