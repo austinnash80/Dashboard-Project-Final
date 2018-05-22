@@ -131,14 +131,10 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <!-- <th>Mail</th> -->
         <th><h4 class="body-text">Title</h4></th>
         <th><h4 class="body-text">Deliver Date</h4></th>
         <th><h4 class="body-text">Drop Date</h4></th>
-        <th><h4 class="body-text">Art</h4></th>
-        <!-- <th>Quantity</th>
-        <th>Data File</th>
-        <th>Art File</th> -->
+        <th><h4 class="body-text">Status</h4></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -146,32 +142,21 @@
     <tbody>
       <% @mail_items.each do |mail_item| %>
         <tr>
-          <!-- <td><%= mail_item.mailSchedule.mail_id %></td> -->
           <td><%= mail_item.title %></td>
           <td><%= (mail_item.mailSchedule.drop_date - 10).strftime('%m/%d/%y') %></td>
           <td><%= mail_item.mailSchedule.drop_date.strftime('%m/%d/%y') %></td>
-          <% if mail_item.complete == true %>
-            <td><i class="fa fa-check-circle fa-2x table-icons-green"></i></td>
-          <% elsif %>
+
+          <% if @mail_item.data_file_name.to_s.empty? || @mail_item.image_file_name.to_s.empty? %>
             <td><i class="fa fa-times-circle fa-2x table-icons-red"></i></td>
+          <% elsif %>
+            <td><i class="fa fa-check-circle fa-2x table-icons-green"></i></td>
           <% end %>
 
-          <!-- <td><%= mail_item.quantity %></td>
-
-          <td><%= mail_item.mail_id.to_f / 10 %>.xlsx</td>
-          <td><%= mail_item.mail_id.to_f / 10 %>.pdf</td> -->
-
           <td><%= link_to 'Materials', mail_item, class: 'btn btn-default' %></td>
-
-          <!-- <td><%= link_to 'Edit', edit_mail_item_path(mail_item) %></td>
-          <td><%= link_to 'Destroy', mail_item, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
         </tr>
       <% end %>
     </tbody>
   </table>
-
-
-
 
 </div>
 

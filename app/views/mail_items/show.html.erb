@@ -5,9 +5,13 @@
 <!-- Local Host  -->
 <!-- <a class="btn btn-default display-none" target="_blank" href="http://localhost:3000/<%= @mail_item.image %>">Art Download</a> -->
 <div class="btn-group display-none">
-    <a class="btn btn-primary" target="_blank" href="<%= @mail_item.image %>">Art Download</a>
-    <a class="btn btn-primary" target="_blank" href="<%= @mail_item.data %>">Data Download</a>
-    <%= link_to 'Schedule Download', mail_item_path(@mail_item, :format => 'pdf'), class: 'btn btn-primary', target: '_blank'%>
+    <a class="btn btn-primary" target="_blank" href="<%= @mail_item.image %>"><i class="glyphicon glyphicon-download-alt" ></i> Art</a>
+    <a class="btn btn-primary" target="_blank" href="<%= @mail_item.data %>"><i class="glyphicon glyphicon-download-alt" ></i> Data</a>
+    <%= link_to raw('<i class="glyphicon glyphicon-download-alt" ></i> Schedule'), mail_item_path(@mail_item, :format => 'pdf'), class: 'btn btn-primary', target: '_blank'%>
+</div>
+<div>
+<br/>
+<%= link_to 'Upload Files', edit_mail_item_path(@mail_item), class: 'display-none btn  btn-default' %>
 </div>
 
 <h1>Sequoia CPE Mailing</h1>
@@ -22,8 +26,6 @@
 <th><strong>Quantity:</strong></th>
 <th><strong>Art File:</strong></th>
 <th><strong>Data File:</strong></th>
-<th><strong>Art File:</strong></th>
-<th><strong>Data File:</strong></th>
 </thead>
 
 
@@ -32,20 +34,18 @@
 <td><%= @mail_item.mailSchedule.drop_date.strftime('%m/%d/%y') %></td>
 <td><%= number_with_delimiter(@mail_item.quantity) %></td>
 <!-- Art File Name -->
-<% if @mail_item.image_file_name = '' %>
-    <td><i class="glyphicon glyphicon-file table-icons-red"></i> Empty</td>
+<% if @mail_item.image_file_name.to_s.empty %>
+    <td><i class="glyphicon glyphicon-file table-icons-red display-none"></i> Empty</td>
 <%elsif %>
-    <td><i class="glyphicon glyphicon-file table-icons-green"></i><%= @mail_item.image_file_name %></td>
+    <td><i class="glyphicon glyphicon-file table-icons-green display-none"></i> <%= @mail_item.image_file_name %></td>
 <% end %>
 
 <!-- Data File Name -->
-<% if @mail_item.data_file_name.to_s.empty? %>
-    <td><i class="glyphicon glyphicon-file table-icons-red"></i> Empty</td>
+<%= if @mail_item.data_file_name.to_s.empty? %>
+    <td><i class="glyphicon glyphicon-file table-icons-red display-none"></i> Empty</td>
 <%elsif %>
-    <td><i class="glyphicon glyphicon-file table-icons-green"></i><%= @mail_item.data_file_name %></td>
+    <td><i class="glyphicon glyphicon-file table-icons-green display-none"></i> <%= @mail_item.data_file_name %></td>
 <% end %>
-<td><% @mail_item.data_file_name %></td>
-<td><% @mail_item.image_file_name %></td>
 </tr>
 </tbody>
 </table>
@@ -54,26 +54,6 @@
 <div class="print-only">
   <p><%= @mail_item.msi_note.html_safe %></p>
 </div>
-
-<!--<p>
-  <strong>Note 2:</strong>
-  <%= @mail_item.note_2 %>
-</p>
-
-<p>
-  <strong>Complete:</strong>
-  <%= @mail_item.complete %>
-</p>
-
-<p>
-  <strong>Boolean 1:</strong>
-  <%= @mail_item.boolean_1 %>
-</p>
-
-<p>
-  <strong>Integer 1:</strong>
-  <%= @mail_item.integer_1 %>
-</p> -->
 
 <%= link_to 'Edit | ', edit_mail_item_path(@mail_item), class: 'display-none' %>
 <%= link_to 'Back', mail_items_path, class: 'display-none' %>

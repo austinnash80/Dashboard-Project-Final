@@ -1,0 +1,27 @@
+<%= form_with(model: mail_item, local: true) do |form| %>
+  <% if mail_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mail_item.errors.count, "error") %> prohibited this mail_item from being saved:</h2>
+
+      <ul>
+      <% mail_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image, id: :mail_item_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.file_field :data, id: :mail_item_data %>
+  </div>
+<br/>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
