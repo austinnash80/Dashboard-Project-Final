@@ -35,14 +35,14 @@
 <% if @mail_item.image_file_name = '' %>
     <td><i class="glyphicon glyphicon-file table-icons-red"></i> Empty</td>
 <%elsif %>
-    <td><i class="glyphicon glyphicon-file table-icons-green"></i><% @mail_item.image_file_name %></td>
+    <td><i class="glyphicon glyphicon-file table-icons-green"></i><%= @mail_item.image_file_name %></td>
 <% end %>
 
 <!-- Data File Name -->
 <% if @mail_item.data_file_name.to_s.empty? %>
     <td><i class="glyphicon glyphicon-file table-icons-red"></i> Empty</td>
 <%elsif %>
-    <td><i class="glyphicon glyphicon-file table-icons-green"></i><% @mail_item.data_file_name.to_s %></td>
+    <td><i class="glyphicon glyphicon-file table-icons-green"></i><%= @mail_item.data_file_name %></td>
 <% end %>
 <td><% @mail_item.data_file_name %></td>
 <td><% @mail_item.image_file_name %></td>
