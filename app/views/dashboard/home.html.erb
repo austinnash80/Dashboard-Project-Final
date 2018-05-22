@@ -1,5 +1,8 @@
 <!-- <h1>Dashboard#home</h1> -->
 
+
+
+
 <body class="body-home">
 
 <% user_signed_in? && current_user.email == 'austin@sequoiacpe.com' ? @name = 'Austin' : '' %>
@@ -20,13 +23,14 @@
         <% if user_signed_in? && current_user.superadmin_role?%>
         <li class="divider"></li>
             <li><a href="/admin">Admin</a></li>
-            <li><a href="/users/sign_out">Log out</a></li>
+            <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+            <!-- <li><a href="/users/sign_out">Log out</a></li> -->
         <% elsif user_signed_in? %>
         <li class="divider"></li>
-            <li><a href="/users/sign_out">Log out</a></li>
+            <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
         <% elsif %>
         <li class="divider"></li>
-            <li><a href="/users/sign_up">Sign up</a></li>
+            <!-- <li><a href="/users/sign_up">Sign up</a></li> -->
             <li><a href="/users/sign_in">Log in</a></li>
         <% end %>
           </ul>
@@ -34,7 +38,7 @@
   <!-- End Menu -->
 </h2>
 
-<h2 class="name-text text-center"><%= @name %>'s Dashboard</h2>
+<h2 class="name-text text-center"><%= current_user.name %> Dashboard</h2>
 
 <br />
 <!-- Quick Notes section - Vue.js-->
@@ -123,8 +127,10 @@
   </div>
 </div>
 
+
 <!-- Mail scheule section -->
  <div class="col-sm-6">
+ <% if user_signed_in? && current_user.superadmin_role? %>
   <div class="well">
   <h2 class="text-center">Upcoming Schedule</h2>
 
@@ -134,7 +140,8 @@
         <th><h4 class="body-text">Title</h4></th>
         <th><h4 class="body-text">Deliver Date</h4></th>
         <th><h4 class="body-text">Drop Date</h4></th>
-        <th><h4 class="body-text">Status</h4></th>
+        <th><h4 class="body-text">Art</h4></th>
+        <th><h4 class="body-text">Data</h4></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -146,10 +153,16 @@
           <td><%= (mail_item.mailSchedule.drop_date - 10).strftime('%m/%d/%y') %></td>
           <td><%= mail_item.mailSchedule.drop_date.strftime('%m/%d/%y') %></td>
 
-          <% if @mail_item.data_file_name.to_s.empty? || @mail_item.image_file_name.to_s.empty? %>
-            <td><i class="fa fa-times-circle fa-2x table-icons-red"></i></td>
+          <% if mail_item.image_file_name.to_s.empty? %>
+            <td class=""><%= link_to '', edit_mail_item_path(mail_item), class: 'glyphicon glyphicon-upload icon' %></td>
           <% elsif %>
-            <td><i class="fa fa-check-circle fa-2x table-icons-green"></i></td>
+            <td class=""><%= link_to '', mail_item, class: 'glyphicon glyphicon-file table-icons-green icon' %></td>
+          <% end %>
+
+          <% if mail_item.data_file_name.to_s.empty? %>
+            <td class=""><%= link_to '', edit_mail_item_path(mail_item), class: 'glyphicon glyphicon-upload icon' %></td>
+          <% elsif %>
+            <td class=""><%= link_to '', mail_item, class: 'glyphicon glyphicon-file table-icons-green icon' %></td>
           <% end %>
 
           <td><%= link_to 'Materials', mail_item, class: 'btn btn-default' %></td>
@@ -159,6 +172,87 @@
   </table>
 
 </div>
+<% elsif %>
+
+<!-- User role course info -->
+<div class="well">
+  <h2 class="text-center">Course Updates</h2>
+
+  <% @status_check = [] %>
+  <% @updatesheets.each do |updatesheet| %>
+    <% if updatesheet.course_listed == true && updatesheet.text_complete == true && updatesheet.exam_complete == true && updatesheet.proofed == true %>
+      <% @status_check.push(0) %>
+    <% elsif %>
+      <% @status_check.push(1) %>
+    <% end %>
+  <% end %>
+
+  <!-- Status is pushed into an array done =1 not_done =2 ex: [1,2,1] => work needs to be done-->
+  <!-- <%# if @status_check.itself.uniq.length == 1 %> -->
+
+  <% if (@status_check.inject(0, :+)) == 0 %>
+  <!-- <h3 class="green_text"> Courses are up to date </h3> -->
+    <h4 class="text-center body-text"> No courses in-progress</h4>
+  <% elsif (@status_check.inject(0, :+)) == 1 %>
+    <h4 class="text-center body-text"> <i class=""></i> <%=(@status_check.inject(0, :+))%> course in-progress</h4>
+  <% elsif %>
+    <h4 class="text-center body-text"> <%=(@status_check.inject(0, :+))%> courses in-progress</h4>
+  <% end %>
+<h2>
+  <div class="btn-group">
+      <%= link_to 'View', updatesheets_path, class: 'btn btn-primary' %>
+      <%= link_to 'Add', datasheets_path, class: 'btn btn-primary' %>
+  </div>
+</h2>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Ver.</th>
+        <th>Date Recieved</th>
+        <th>Text</th>
+        <th>Exam</th>
+        <th>Proofed</th>
+        <th>Details</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody id="myTable">
+      <% @updatesheets.each do |updatesheet| %>
+        <tr>
+            <% if updatesheet.course_listed == false || updatesheet.text_complete == false || updatesheet.exam_complete == false || updatesheet.proofed == false %>
+              <td><%= updatesheet.datasheet.seq_number %></td>
+              <td><%= updatesheet.seq_version %></td>
+              <td><%= updatesheet.date_received.strftime('%m/%d/%y') %></td>
+        <!-- Text -->
+              <% if updatesheet.text_complete == true %>
+                <td class="green_text">Done</td>
+                <% elsif updatesheet.text_complete == false %>
+                <td class="red_text">No</td>
+              <% end %>
+        <!-- Exam -->
+              <% if updatesheet.exam_complete == true %>
+                <td class="green_text">Done</td>
+                <% elsif updatesheet.exam_complete == false %>
+                <td class="red_text">No</td>
+              <% end %>
+        <!-- Proof -->
+              <% if updatesheet.proofed == true %>
+                <td class="green_text"><strong>Yes</strong></td>
+                <% elsif %>
+                <td class="red_text"><strong>No</strong></td>
+                <% end %>
+                <td><%= link_to 'Details', updatesheet %></td>
+            <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% end %>
 
 <!-- Left Sales Section -->
   <div class="col-sm-6 length right-square well">
@@ -279,11 +373,13 @@
 <!-- COLUMN CHART 2-->
 
      <ul class="nav nav-tabs">
+<% if user_signed_in? && current_user.superadmin_role? %>
        <li class="active"><a data-toggle="tab" href="#total-sales">Daily</a></li>
        <li><a data-toggle="tab" href="#month-sales">Monthly</a></li>
+<% end %>
        <li><a data-toggle="tab" href="#pie-sales">Distribution</a></li>
      </ul>
-
+<% if user_signed_in? && current_user.superadmin_role? %>
      <div class="tab-content">
        <div id="total-sales" class="tab-pane fade in active text-center">
         <h2 class=""><%= (Date.today - 1).strftime('%A') %>: <br /> <%= number_to_currency(@day_sales_1.inject(0, :+), precision: 0) %></h2>
@@ -296,19 +392,27 @@
           <% @barGM %>
        </div>
 
-       <div id="pie-sales" class="tab-pane fade">
+
+       <div id="pie-sales" class="tab-pane fade text-center">
         <h2 class=""><%= (Date.today - 30).strftime('%Y') %></h2>
         <%= pie_chart @bar %>
        </div>
      </div>
-
+<% elsif %>
+     <div class="tab-content">
+      <div id="pie-sales" class="tab-pane fade in active text-center">
+        <h2 class=""><%= (Date.today - 30).strftime('%Y') %></h2>
+        <%= pie_chart @bar %>
+       </div>
+      </div>
+<% end %>
 
   </div>
   <div class="col-sm-6 length left-square well">
 
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#1">People</a></li>
-      <li><a data-toggle="tab" href="#2">Tab 2</a></li>
+      <li><a data-toggle="tab" href="#2">Reports</a></li>
     </ul>
 
     <div class="tab-content">
@@ -347,6 +451,7 @@
 </div>
 
 <div class="col-sm-3">
+<% if user_signed_in? && current_user.superadmin_role? %>
   <div class="well">
     <h2 class="text-center">Course Updates</h2>
 
@@ -364,16 +469,16 @@
 
     <% if (@status_check.inject(0, :+)) == 0 %>
     <!-- <h3 class="green_text"> Courses are up to date </h3> -->
-    <h4 class="text-center body-text"> No courses inprogress <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign green btn btn-default' %></h4>
+    <h4 class="text-center body-text"> No courses in-progress <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign green btn btn-default' %></h4>
     <%elsif (@status_check.inject(0, :+)) == 1 %>
-    <h4 class="text-center body-text"> <i class=""></i> <%=(@status_check.inject(0, :+))%> course inprogess <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign yellow btn btn-default' %></h4>
+    <h4 class="text-center body-text"> <i class=""></i> <%=(@status_check.inject(0, :+))%> course in-progress <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign yellow btn btn-default' %></h4>
     <%elsif %>
-    <h4 class="text-center body-text"> <%=(@status_check.inject(0, :+))%> courses inprogess <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign yellow btn btn-default' %></h4>
+    <h4 class="text-center body-text"> <%=(@status_check.inject(0, :+))%> courses in-progress <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign yellow btn btn-default' %></h4>
     <%end%>
     <h4 class="text-center"><%= link_to 'Add Update', datasheets_path, class: 'btn btn-primary' %><h4>
 
 </div>
-
+<% end %>
   <div class="well">
     <h2 class="text-center">Exams</h2>
 

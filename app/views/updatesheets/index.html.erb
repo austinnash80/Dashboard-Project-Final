@@ -21,7 +21,7 @@
 <% if (@status_check.inject(0, :+)) == (@status_check.length) %>
 <h3 class="green_text"> Courses are up to date </h3>
 <%elsif %>
-<h3 class="red_text"> There is In Progess work </h3>
+<h3 class="red_text"> There is In-Progress work </h3>
 <%end%>
 
 <!-- Seach bar -->
@@ -38,7 +38,7 @@
       <th><%= sortable 'seq_number', 'Seq' %></th> <!--can sort now -->
       <th>V</th>
       <th>Title</th>
-      <th><%= sortable 'pes_number', 'PES' %></th>
+      <th><%= sortable 'pes_number', 'PUB' %></th>
       <th>V</th>
       <th><%= sortable 'date_received', 'Recieved' %></th> <!--sortable column header -->
       <!-- <th>Update course</th> -->
@@ -73,7 +73,7 @@
         <% elsif updatesheet.course_listed == true && updatesheet.text_complete == true && updatesheet.exam_complete == true %>
             <td><span class="green_text">Listed</span> - <span class="red_text">Not Proofed</span></td>
         <% elsif %>
-            <td class="red_text">In Progess</td>
+            <td class="red_text">In-Progress</td>
         <% end %>
         <td><%= updatesheet.datasheet.seq_number %></td>
         <td><%= updatesheet.seq_version %></td>

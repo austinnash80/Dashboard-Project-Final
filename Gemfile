@@ -37,16 +37,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-
 gem 'rack-cors', '~> 0.4.0' #added for API connection
-
-gem 'devise' #For log in authentication
-
-gem 'remotipart', github: 'mshibuya/remotipart' #part of the rails admin below - tutorial = https://codepany.com/blog/rails-5-user-accounts-with-3-types-of-roles-devise-rails_admin-cancancan/
-
-gem 'rails_admin', '>= 1.0.0.rc' #to create an admin users - tutorial above
-
-gem 'cancancan' #restrict access to some parts of app for users with specific roles
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -73,7 +64,7 @@ gem "figaro" #for aws - may not have been needed
 
 gem "paperclip", "~> 6.0.0" #upload images
 
-gem 'aws-sdk-s3'
+gem 'aws-sdk-s3' # file storage
 
 gem 'pdfkit' # generate pdfs
 
@@ -81,10 +72,18 @@ gem 'wkhtmltopdf-binary' #need for pdfkit gem
 
 gem "font-awesome-rails"
 
-gem "chartkick"
+gem "chartkick" #graphs
 
 gem "groupdate" #makes dates easier for chartkick
 
 gem 'httparty', '~> 0.13.7'
 
 gem 'vuejs-rails'
+
+gem 'devise' #For log in authentication
+
+gem 'remotipart', github: 'mshibuya/remotipart' #part of the rails admin below - tutorial = https://codepany.com/blog/rails-5-user-accounts-with-3-types-of-roles-devise-rails_admin-cancancan/
+
+gem 'rails_admin', '>= 1.0.0.rc' #to create an admin users - tutorial above
+
+gem 'cancancan' #restrict access to some parts of app for users with specific roles

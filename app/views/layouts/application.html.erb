@@ -1,108 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SequoiaCourses</title>
+    <title>Final Project - Dashboard</title>
     <%= csrf_meta_tags %>
-    <!-- <script src="http://cdn.jsdelivr.net/npm/vue"></script> -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <!-- Moved to the end of body for the vue gem -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Lora|Varela+Round|Alfa+Slab+One" rel="stylesheet">
   </head>
 
   <body>
 
-    <% user_signed_in? && current_user.email == 'austin@sequoiacpe.com' ? @name = 'Austin' : '' %>
-    <% user_signed_in? && current_user.email == 'austin@admin.com' ? @name = 'Austin-Admin' : '' %>
-    <% user_signed_in? && current_user.email == 'michael@sequoiacpe.com' ? @name = 'Michael' : '' %>
-    <% user_signed_in? && current_user.email == 'kyle@sequoiacpe.com' ? @name = 'Kyle' : '' %>
-    <% user_signed_in? && current_user.email == 'ashley@sequoiacpe.com' ? @name = 'Ashley' : '' %>
-
 <% unless controller_name == "dashboard" %>
+<!-- this nav bar is for non dashboard -->
 
-<% if user_signed_in? %>
+  <% if user_signed_in? %>
+      <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to 'Lorem & CO.', dashboard_home_path, class: "navbar-brand" %>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Datasheet', datasheets_path %></li>
+          <li><%= link_to 'UpdateSheet', updatesheets_path %></li>
+          <li><%= link_to 'Exams', exams_path %></li>
+          <li><%= link_to 'Mail Schedule', mail_schedules_path %></li>
+          <li><%= link_to 'Mailing Contents', mail_items_path %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li><%= link_to current_user.name, edit_user_registration_path %></li>
+            <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'log in', new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- not logged in - get a empty nav bar -->
+    <% elsif %>
     <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <%= link_to 'Sequoia CPE', dashboard_home_path, class: "navbar-brand" %>
+        <a class="navbar-brand" href="#">Lorem & CO.</a>
       </div>
-      <ul class="nav navbar-nav">
-        <!-- <% if current_user.superadmin_role? || current_user.supervisor_role? %>
-          <li><a href="/datasheets">DataSheet</a></li>
-        <% end %> -->
-        <li><%= link_to 'Datasheet', datasheets_path %></li>
-        <li><%= link_to 'UpdateSheet', updatesheets_path %></li>
-        <li><%= link_to 'Exams', exams_path %></li>
-        <li><%= link_to 'Mail Schedule', mail_schedules_path %></li>
-        <li><%= link_to 'Mailing Contents', mail_items_path %></li>
-      </ul>
       <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li><%= link_to @name, edit_user_registration_path %></li>
-          <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to 'sign up', new_user_registration_path %></li>
-          <li><%= link_to 'log in', new_user_session_path %></li>
-        <% end %>
+        <li><%= link_to 'log in', new_user_session_path %></li>
+        <!-- <li><%= link_to 'sign up', new_user_registration_path %></li> -->
       </ul>
     </div>
   </nav>
-  <!-- not logged in - get a empty nav bar -->
-  <% elsif %>
-  <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Sequoia CPE</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to 'log in', new_user_session_path %></li>
-      <li><%= link_to 'sign up', new_user_registration_path %></li>
-    </ul>
-  </div>
-</nav>
+  <% end %>
 <% end %>
-<% end %>
-
 
     <%= yield %>
-
-  <script>
-    $(document).ready(function(){
-      $("#myInput").on("keyup", function() {
-
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
-
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-      });
-
-      $('#search_symbol').on('click', sales_data);
-      $("#myInput").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-      });
-
-    }); //Doc Ready end
-
-const sales_data = function (event) {
-  event.preventDefault();
-
-  let data = 1
-
-  // $.getJSON(`http://localhost:3001/ordersheets/${ data }.json`).done(function(json){
-  $.getJSON(`http://localhost:3001/ordersheets.json`).done(function(json){
-    $('#results1').text(json.order_total)
-  }).fail(function () {
-      alert('Something bad happened');
-    });
-}
-
-  </script>
-
-    <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> -->
 
   </body>
 </html>
