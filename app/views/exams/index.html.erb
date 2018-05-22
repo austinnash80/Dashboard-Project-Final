@@ -4,48 +4,30 @@
   <h1>Exams</h1>
 </div>
 
+<h3>Upload CSV File</h3>
+  <%= form_tag import_exams_path, multipart: true do %>
+  <%= file_field_tag :file %>
+</br>
+  <%= submit_tag 'Upload', class: 'btn btn-primary' %>
+<% end %>
 
-<% @arr_cpa = [] %>
+<%= link_to 'New Exam', new_exam_path %>
 
-<%# ordersheet.pur_date == (@today - 1) ? @today_sales_1.push(ordersheet.order_total) : '' %>
-
+<!-- <% @arr_cpa = [] %>
 <% @exams.each do |exam| %>
   <% if exam.des == 'CPA' %>
     <% @arr_cpa.push(exam.seq_number)%>
   <% end %>
 <% end %>
-
 CPA Array <%= @arr_cpa %>
-
 <% @cpa = Exam.select('seq_title') %>
-
 CPA Exam.select = <%= @cpa %>
-
 <% @day = Exam.group(:seq_number, :des).order(:des, :seq_number).count %>
+ <%= @day %> -->
 
-<!-- <%= @day %> -->
-
-<% @day.each do |e| %>
+<!-- <% @day.each do |e| %>
   <div> Course: <%= e.join(" , ") %></div>
-<%end%>
-
-<%#= bar_chart Shirt.group(:size).sum(:price) %>
-
-<!-- <%= bar_chart Exam.group(:seq_number).count %> -->
-
-<!-- <% @arr_exam = [] %>
-
-<% @exams.each do |exam| %>
-  <% @arr_exam.push(exam.seq_number)%>
-<% end %>
-
-<% @arr =  @arr_exam.group_by(&:to_s).map { |a| [a[0], a[1].count] }.to_h %>
-
-<% @arr.each do |title| %>
-  <div>Exam: <%= title.join(" | ") %></div>
 <%end%> -->
-
-<!-- <div> Total Exams Taken: <%= @arr_exam.length %> -->
 
 
 <table class="table table-hover">
@@ -85,14 +67,3 @@ CPA Exam.select = <%= @cpa %>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Exam', new_exam_path %>
-
-<h3>Upload CSV File</h3>
-  <%= form_tag import_exams_path, multipart: true do %>
-  <%= file_field_tag :file %>
-</br>
-  <%= submit_tag 'Upload', class: 'btn btn-primary' %>
-<% end %>

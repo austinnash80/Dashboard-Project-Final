@@ -45,7 +45,6 @@
   <div class="col-sm-3" id="app">
     <div class="well">
     <h2 class="text-center"> Quick Notes</h2>
-    <h4 class="text-center body-text"> Vue.js Local Storage </h4>
     <input class="form-control" placeholder="Add A New Simple Task" v-model="newTodo" @keydown.enter="addTodo">
 </br>
     <div class="list-unstyled list-group" >
@@ -62,7 +61,6 @@
 <div class="well">
     <h2 class="text-center">Future Tasks</h2>
     <div class="text-center"><%= link_to 'New Task', new_note_path, class: 'btn btn-primary' %></div>
-    <h4 class="text-center body-text">Database Storage</h4>
   </br>
 
     <% @notes.each do |note| %>
@@ -102,24 +100,17 @@
                   <% elsif note.type_two == true %> | Type: Two
                   <% elsif note.type_three == true%> | Type: Three
                   <% end %>
-
-                  <!-- <%= link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' } %> -->
-
                   <% if note.due == true %>
                     | <%= note.due_date %>
                   <% elsif %>
                   <p></p>
                   <% end%>
 
-
-
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                   Close
-
                 </button>
               </div>
             </div>
-
           </div>
         </div>
   <% end %>
@@ -174,7 +165,7 @@
 </div>
 <% elsif %>
 
-<!-- User role course info -->
+<!-- User role course info - not on admin role dashboard-->
 <div class="well">
   <h2 class="text-center">Course Updates</h2>
 
@@ -256,121 +247,6 @@
 
 <!-- Left Sales Section -->
   <div class="col-sm-6 length right-square well">
-     <% @object = @output.join('') %>
-     <%#= @object[0..25] %>
-     <%#= @object %>
-
-     <%#= @outputHTML.html_safe %>
-
-<!-- Today - 1 -->
-  <!-- <% @CPA_day_sales_1 = [] %>
-  <% @EA_day_sales_1 = [] %> -->
-  <% @day_sales_1 = [] %>
-
-<!-- Today - 2 -->
-  <!-- <% @CPA_day_sales_2 = [] %>
-  <% @EA_day_sales_2 = [] %>
-  <% @day_sales_2 = [] %> -->
-
-<!-- Today - 3 -->
-  <!-- <% @CPA_day_sales_3 = [] %>
-  <% @EA_day_sales_3 = [] %>
-  <% @day_sales_3 = [] %> -->
-
-     <% @output.each do |i| %>
-     <!-- Today - 1 -->
-       <% i['license'] == 'EA' && i['pur_date'] == (Date.today - 1).to_s ? @EA_day_sales_1.push(i['order_total']) : '' %>
-       <% i['license'] == 'CPA' && i['pur_date'] == (Date.today - 1).to_s ? @CPA_day_sales_1.push(i['order_total']) : '' %>
-       <% i['pur_date'] == (Date.today - 1).to_s ? @day_sales_1.push(i['order_total']) : '' %>
-
-     <!-- Today - 2 -->
-       <% i['license'] == 'EA' && i['pur_date'] == (Date.today - 2).to_s ? @EA_day_sales_2.push(i['order_total']) : '' %>
-       <% i['license'] == 'CPA' && i['pur_date'] == (Date.today - 2).to_s ? @CPA_day_sales_2.push(i['order_total']) : '' %>
-       <% i['pur_date'] == (Date.today - 2).to_s ? @day_sales_2.push(i['order_total']) : '' %>
-
-     <!-- Today - 3 -->
-       <% i['license'] == 'EA' && i['pur_date'] == (Date.today - 3).to_s ? @EA_day_sales_3.push(i['order_total']) : '' %>
-       <% i['license'] == 'CPA' && i['pur_date'] == (Date.today - 3).to_s ? @CPA_day_sales_3.push(i['order_total']) : '' %>
-       <% i['pur_date'] == (Date.today - 3).to_s ? @day_sales_3.push(i['order_total']) : '' %>
-     <% end %>
-
-<!-- PIE CHART -->
-    <% @cpaB = [] %> <% @cpaB1 = ['CPA'] %>
-    <% @eaB = [] %> <% @eaB1 = ['EA'] %>
-    <% @bar = [] %>
-
-       <% @output.each do |i| %>
-         <% i['license'] == 'CPA' ? @cpaB.push(i['license']) : '' %>
-         <% i['license'] == 'EA' ? @eaB.push(i['license']) : '' %>
-       <% end %>
-
-     <% @cpaL = @cpaB.length %> <% @cpaB1.push(@cpaL) %>
-     <% @eaL = @eaB.length %><% @eaB1.push(@eaL) %>
-     <% @bar.push(@cpaB1, @eaB1) %>
-
-<!-- PIE CHART -->
-<!-- COLUMN CHART 1-->
-    <% @sales_1 = [] %><% @sales_1A = {} %>
-    <% @sales_2 = [] %><% @sales_2A = {} %>
-    <% @sales_3 = [] %><% @sales_3A = {} %>
-    <% @sales_4 = [] %><% @sales_4A = {} %>
-    <% @sales_5 = [] %><% @sales_5A = {} %>
-    <% @sales_6 = [] %><% @sales_6A = {} %>
-    <% @sales_7 = [] %><% @sales_7A = {} %>
-
-    <% @output.each do |i| %>
-      <% i['pur_date'] == (Date.today - 1).to_s ? @sales_1.push(i['order_total']) : '' %>
-      <% i['pur_date'] == (Date.today - 2).to_s ? @sales_2.push(i['order_total']) : '' %>
-      <% i['pur_date'] == (Date.today - 3).to_s ? @sales_3.push(i['order_total']) : '' %>
-      <% i['pur_date'] == (Date.today - 4).to_s ? @sales_4.push(i['order_total']) : '' %>
-      <% i['pur_date'] == (Date.today - 5).to_s ? @sales_5.push(i['order_total']) : '' %>
-      <% i['pur_date'] == (Date.today - 6).to_s ? @sales_6.push(i['order_total']) : '' %>
-      <% i['pur_date'] == (Date.today - 7).to_s ? @sales_7.push(i['order_total']) : '' %>
-    <% end %>
-
-    <% @sales_1.each do |key, value| %>
-      <% @sales_1A[(Date.today - 1).strftime('%a, %-d')] = @sales_1.inject(0, :+) %>
-      <% @sales_2A[(Date.today - 2).strftime('%a, %-d')] = @sales_2.inject(0, :+) %>
-      <% @sales_3A[(Date.today - 3).strftime('%a, %-d')] = @sales_3.inject(0, :+) %>
-      <% @sales_3A[(Date.today - 4).strftime('%a, %-d')] = @sales_4.inject(0, :+) %>
-      <% @sales_3A[(Date.today - 5).strftime('%a, %-d')] = @sales_5.inject(0, :+) %>
-      <% @sales_3A[(Date.today - 6).strftime('%a, %-d')] = @sales_6.inject(0, :+) %>
-      <% @sales_3A[(Date.today - 7).strftime('%a, %-d')] = @sales_7.inject(0, :+) %>
-    <% end %>
-
-    <% @barG = @sales_1A.merge( @sales_2A ).merge( @sales_3A ).merge( @sales_4A ).merge( @sales_5A ).merge( @sales_6A ).merge( @sales_7A ) %>
-
-<!-- COLUMN CHART 1-->
-<!-- COLUMN CHART 2-->
-
-    <% @salesM_1 = [] %><% @salesM_1A = {} %>
-    <% @salesM_2 = [] %><% @salesM_2A = {} %>
-    <% @salesM_3 = [] %><% @salesM_3A = {} %>
-    <% @salesM_4 = [] %><% @salesM_4A = {} %>
-    <% @salesM_5 = [] %><% @salesM_5A = {} %>
-    <% @salesM_6 = [] %><% @salesM_6A = {} %>
-
-    <% @output.each do |i| %>
-      <% i['pur_date'].to_date.strftime('%m,%y') == (Date.today).strftime('%m,%y') ? @salesM_1.push(i['order_total']) : '' %>
-      <% i['pur_date'].to_date.strftime('%m,%y') == (Date.today - 30 ).strftime('%m,%y') ? @salesM_2.push(i['order_total']) : '' %>
-      <% i['pur_date'].to_date.strftime('%m,%y') == (Date.today - 60 ).strftime('%m,%y') ? @salesM_3.push(i['order_total']) : '' %>
-      <% i['pur_date'].to_date.strftime('%m,%y') == (Date.today - 90 ).strftime('%m,%y') ? @salesM_4.push(i['order_total']) : '' %>
-      <% i['pur_date'].to_date.strftime('%m,%y') == (Date.today - 120 ).strftime('%m,%y') ? @salesM_5.push(i['order_total']) : '' %>
-      <% i['pur_date'].to_date.strftime('%m,%y') == (Date.today - 150 ).strftime('%m,%y') ? @salesM_6.push(i['order_total']) : '' %>
-    <% end %>
-
-    <% @sales_1.each do |key, value| %>
-      <% @salesM_1A[(Date.today - 1).strftime('%b, %y')] = @salesM_1.inject(0, :+) %>
-      <% @salesM_2A[(Date.today - 30 ).strftime('%b, %y')] = @salesM_2.inject(0, :+) %>
-      <% @salesM_3A[(Date.today - 60 ).strftime('%b, %y')] = @salesM_3.inject(0, :+) %>
-      <% @salesM_4A[(Date.today - 90 ).strftime('%b, %y')] = @salesM_4.inject(0, :+) %>
-      <% @salesM_5A[(Date.today - 120 ).strftime('%b, %y')] = @salesM_5.inject(0, :+) %>
-      <% @salesM_6A[(Date.today - 150 ).strftime('%b, %y')] = @salesM_6.inject(0, :+) %>
-    <% end %>
-
-    <% @barGM = @salesM_1A.merge( @salesM_2A ).merge( @salesM_3A ).merge( @salesM_4A ).merge( @salesM_5A ).merge( @salesM_6A ) %>
-
-<!-- COLUMN CHART 2-->
 
      <ul class="nav nav-tabs">
 <% if user_signed_in? && current_user.superadmin_role? %>
@@ -443,6 +319,7 @@
 
       </div>
       <div id="2" class="tab-pane fade">
+        <h4 class="text-center body-text"> PDF Download Sales/customer Reports</h4>
       </div>
     </div>
 
@@ -470,7 +347,7 @@
     <% if (@status_check.inject(0, :+)) == 0 %>
     <!-- <h3 class="green_text"> Courses are up to date </h3> -->
     <h4 class="text-center body-text"> No courses in-progress <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign green btn btn-default' %></h4>
-    <%elsif (@status_check.inject(0, :+)) == 1 %>
+    <% elsif (@status_check.inject(0, :+)) == 1 %>
     <h4 class="text-center body-text"> <i class=""></i> <%=(@status_check.inject(0, :+))%> course in-progress <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign yellow btn btn-default' %></h4>
     <%elsif %>
     <h4 class="text-center body-text"> <%=(@status_check.inject(0, :+))%> courses in-progress <%= link_to '', updatesheets_path, class: 'btn-bigger1 glyphicon glyphicon-info-sign yellow btn btn-default' %></h4>
@@ -479,26 +356,10 @@
 
 </div>
 <% end %>
+
   <div class="well">
     <h2 class="text-center">Exams</h2>
-
-    <!-- <% @day = Exam.group(:des, :seq_number).order(:des, :seq_number).count %>
-
-    <% @day.each do | k , v | %>
-      <div><%#= e.join(":  ") %></div>
-      <div><%= k.join( " - ") %> taken <%= v %> times</div>
-
-    <%end%> -->
-
-
-
-    <%# ordersheet.pur_date == (@today - 1) ? @today_sales_1.push(ordersheet.order_total) : '' %>
-
-
-
     <h4 class="body-text text-center">Taken over the past year </h4>
-
-
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#cpa-exam">CPA</a></li>
       <li><a data-toggle="tab" href="#ea-exam">EA</a></li>
@@ -514,17 +375,6 @@
         <%= bar_chart Exam.where(:complete_date => 1.year.ago..Time.now, des: 'EA').group(:seq_number).count %>
       </div>
     </div>
-
-
-
-    <%#= bar_chart Exam.where(des: 'CPA').group(:seq_number).count %>
-    <%#= bar_chart Exam.where(des: 'EA').group(:seq_number).count %>
-    <%#= bar_chart Exam.where(:complete_date => 1.months.ago..Time.now).group(:seq_number).count %>
-    <%#= bar_chart Exam.where(:complete_date => 1.year.ago..Time.now).group(:seq_number).count %>
-
-<!-- 'start BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day -->
-    <!-- <%= bar_chart Exam.where(des: 'CPA').group(:seq_number).count %>
-    <%= bar_chart Exam.where(des: 'EA').group(:seq_number).count %> -->
 
   </div>
 </div>
@@ -548,18 +398,18 @@ var todo = new Vue({
       this.newTodo = '';
     },
     remove(todo) {
-      console.log('removed');
+      // console.log('removed');
       let index = this.todos.indexOf(todo)
       this.todos.splice(index, 1)
       localStorage.setItem('todos', JSON.stringify(this.todos));
     },
     edit(todo) {
-      console.log('edit');
+      // console.log('edit');
       this.editTodo = todo;
     },
 
     endEdit(todo) {
-      console.log('editEnd');
+      // console.log('editEnd');
       this.editTodo = {};
       if (todo.text.trim() === ""){
         this.remove(todo);
@@ -568,13 +418,13 @@ var todo = new Vue({
 
   },
   mounted() {
-    console.log('mounted');
+    // console.log('mounted');
     if (localStorage.getItem('todos')) this.todos = JSON.parse(localStorage.getItem('todos'));
   },
   watch: {
     todos: {
       handler() {
-        console.log('changed');
+        // console.log('changed');
         localStorage.setItem('todos', JSON.stringify(this.todos));
       },
       deep: true,
