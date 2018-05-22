@@ -36,14 +36,14 @@
 <!-- Art File Name -->
 <% if @mail_item.image_file_name.to_s.empty %>
     <td><i class="glyphicon glyphicon-file table-icons-red display-none"></i> Empty</td>
-<%elsif %>
+<% elsif %>
     <td><i class="glyphicon glyphicon-file table-icons-green display-none"></i> <%= @mail_item.image_file_name %></td>
 <% end %>
 
 <!-- Data File Name -->
-<%= if @mail_item.data_file_name.to_s.empty? %>
+<% if @mail_item.data_file_name.to_s.empty? %>
     <td><i class="glyphicon glyphicon-file table-icons-red display-none"></i> Empty</td>
-<%elsif %>
+<% elsif %>
     <td><i class="glyphicon glyphicon-file table-icons-green display-none"></i> <%= @mail_item.data_file_name %></td>
 <% end %>
 </tr>
