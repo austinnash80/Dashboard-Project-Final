@@ -29,8 +29,23 @@
         <td><%= mail_item.quantity %></td>
         <!-- <td><%= mail_item.data_name %></td> -->
         <!-- <td><%= number_with_delimiter((mail_item.mail_id / 10).to_f, :delimiter => '.') %>.pdf</td> -->
+        <!-- Art File Name -->
+        <% if mail_item.image_file_name = '' %>
+            <td><i class="glyphicon glyphicon-file table-icons-red"></i> Empty</td>
+        <%elsif %>
+            <td><i class="glyphicon glyphicon-file table-icons-green"></i><% mail_item.image_file_name %></td>
+        <% end %>
+
+        <!-- Data File Name -->
+        <% if mail_item.data_file_name = '' %>
+            <td><i class="glyphicon glyphicon-file table-icons-red"></i> Empty</td>
+        <%elsif %>
+            <td><i class="glyphicon glyphicon-file table-icons-green"></i><% mail_item.data_file_name %></td>
+        <% end %>
+
+<!-- 
         <td><%= mail_item.mail_id.to_f / 10 %>.xlsx</td>
-        <td><%= mail_item.mail_id.to_f / 10 %>.pdf</td>
+        <td><%= mail_item.mail_id.to_f / 10 %>.pdf</td> -->
         <!-- <td><%= mail_item.art_name %></td> -->
         <!-- <td><%= mail_item.msi_note %></td>
         <td><%= mail_item.note_1 %></td>

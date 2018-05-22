@@ -20,31 +20,28 @@
 <th><strong>Title:</strong></th>
 <th><strong>Drop Date:</strong></th>
 <th><strong>Quantity:</strong></th>
-<th><strong>Data File:</strong></th>
 <th><strong>Art File:</strong></th>
-<th><strong>image:</strong></th>
-<th><strong>Data:</strong></th>
+<th><strong>Data File:</strong></th>
 </thead>
 
 
 </tbody>
-<!-- <td><%= @mail_item.mail_id %></td> -->
 <td><%= @mail_item.title %></td>
 <td><%= @mail_item.mailSchedule.drop_date.strftime('%m/%d/%y') %></td>
 <td><%= number_with_delimiter(@mail_item.quantity) %></td>
-<td><%= @mail_item.data_name %></td>
-<td><%= @mail_item.art_name %></td>
-
-<% if File.exist?(@mail_item.image.path) %>
-  <td>The image exists.</td>
-<% else %>
-  <td>The image is not here.</td>
+<!-- Art File Name -->
+<% if @mail_item.image_file_name = '' %>
+    <td><i class="glyphicon glyphicon-file table-icons-red"></i> Empty</td>
+<%elsif %>
+    <td><i class="glyphicon glyphicon-file table-icons-green"></i><% @mail_item.image_file_name %></td>
 <% end %>
 
-<!-- <td><%= @mail_item.image %></td> -->
-<td><%= @mail_item.data %></td>
-<!-- <td><%= @mail_item.mail_id.to_f / 10 %>.xlsx</td> -->
-<!-- <td><%= @mail_item.mail_id.to_f / 10 %>.pdf</td> -->
+<!-- Data File Name -->
+<% if @mail_item.data_file_name = '' %>
+    <td><i class="glyphicon glyphicon-file table-icons-red"></i> Empty</td>
+<%elsif %>
+    <td><i class="glyphicon glyphicon-file table-icons-green"></i><% @mail_item.data_file_name %></td>
+<% end %>
 </tr>
 </tbody>
 </table>
