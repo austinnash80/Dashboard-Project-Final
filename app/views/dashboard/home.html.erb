@@ -62,16 +62,16 @@
     <h2 class="text-center">Future Tasks</h2>
     <div class="text-center"><%= link_to 'New Task', new_note_path, class: 'btn btn-primary' %></div>
   </br>
-    <% if user_signed_in? && note.user_id == current_user.id%>
-    <% @notes.each do |note| %>
 
+    <% @notes.each do |note| %>
+    <% if user_signed_in? && note.user_id == current_user.id%>
         <!-- Trigger the modal with a button -->
         <li class="list-group-item"><button type="button" class="btn btn-wrap-text text-align-right" data-toggle="modal" data-target="#myModal"><%= note.title %></button></li>
-
+    <% end %>
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
           <div class="modal-dialog">
-
+    <% if user_signed_in? && note.user_id == current_user.id%>
             <!-- Modal content-->
             <div class="modal-content">
               <div class="modal-header">
@@ -87,7 +87,7 @@
                   <tr>
                       <%= note.note %>
                   </tr>
-                <% end %>
+      <% end %>
               </div>
               <div class="modal-footer">
                 <a class="btn btn-primary" target="_blank" href="><%#= @note.doc %>">Task Docs</a>
