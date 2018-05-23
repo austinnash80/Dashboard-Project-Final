@@ -64,6 +64,7 @@
   </br>
 
     <% @notes.each do |note| %>
+    <% if user_signed_in? && note.user_id == current_user.id%>
         <!-- Trigger the modal with a button -->
         <li class="list-group-item"><button type="button" class="btn btn-wrap-text text-align-right" data-toggle="modal" data-target="#myModal"><%= note.title %></button></li>
 
@@ -76,7 +77,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">
-              <% if user_signed_in? && note.user_id == current_user.id%>
+
                   <%= note.title %> | <%= link_to 'Edit', edit_note_path(note) %>
 
                 </h4>
