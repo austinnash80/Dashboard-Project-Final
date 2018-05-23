@@ -63,7 +63,9 @@
     <div class="text-center"><%= link_to 'New Task', new_note_path, class: 'btn btn-primary' %></div>
   </br>
 
+
     <% @notes.each do |note| %>
+  <% if user_signed_in? && note.user_id == current_user.id%>
         <!-- Trigger the modal with a button -->
         <li class="list-group-item"><button type="button" class="btn btn-wrap-text text-align-right" data-toggle="modal" data-target="#myModal"><%= note.title %></button></li>
 
@@ -82,7 +84,7 @@
                 </h4>
               </div>
               <div class="modal-body">
-                <% if user_signed_in? && note.user_id == current_user.id%>
+                <%# if user_signed_in? && note.user_id == current_user.id%>
                   <tr>
                       <%= note.note %>
                   </tr>
